@@ -1,0 +1,7 @@
+node_modules
+public/dist
+
+
+# MISC 
+package-lock.json
+STYLE-GUIDE.md
