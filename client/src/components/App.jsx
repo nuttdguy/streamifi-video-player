@@ -15,6 +15,7 @@ class App extends Component {
         return (
             <div>
                 HELLO
+                <li>child element</li>
             </div>
         )
     }
