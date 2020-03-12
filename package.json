@@ -1,46 +1,40 @@
 {
-  "name": "",
+  "name": "streamifi-video",
   "version": "",
-  "description": "",
+  "description": "Streaming video",
   "author": "",
   "license": "",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
-    "test": "jest /_tests",
+    "test": "jest",
     "build": "webpack -d -w",
     "react:dev": "npm start /client/index.js"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "moduleDirectories": [
-      "node_modules"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>_tests/setupTests.js"
-    ]
   },
   "dependencies": {
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "nodemon": "^2.0.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
-    "airbnb-style": "git+https://github.com/airbnb/javascript.git",
     "babel-jest": "^25.1.0",
     "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
     "jest": "^25.1.0",
+    "jest-enzyme": "^7.1.2",
     "mocha": "^7.1.0",
     "react-test-renderer": "^16.13.0",
     "webpack": "^4.42.0",
