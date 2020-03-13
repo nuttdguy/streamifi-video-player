@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Plyr from 'plyr';
-import Hls from 'hls.js';
 import axios from 'axios';
 
 
