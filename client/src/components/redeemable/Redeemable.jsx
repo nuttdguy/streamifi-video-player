@@ -5,8 +5,17 @@ class Redeemable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            redeemables: []
         }
+    }
+
+    componentDidMount() {
+        // 
+        const redeemables = [{}, {}, {}];
+
+        this.setState({
+            redeemables: redeemables
+        })
     }
 
     render() {
