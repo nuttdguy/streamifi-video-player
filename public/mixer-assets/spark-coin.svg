@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="31px" viewBox="0 0 30 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/sparks</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="94.3060981%" id="linearGradient-1">
+            <stop stop-color="#1FBAED" offset="0%"></stop>
+            <stop stop-color="#1F81ED" offset="100%"></stop>
+        </linearGradient>
+        <path d="M15,29.5 C6.71572875,29.5 0,22.7842712 0,14.5 C0,6.21572875 6.71572875,-0.5 15,-0.5 C23.2842712,-0.5 30,6.21572875 30,14.5 C30,22.7842712 23.2842712,29.5 15,29.5 Z M11.4316406,25 L20.578125,11.875 L15,11.875 L17.4711914,4 L8.4375,17.125 L13.6875,17.125 L11.4316406,25 Z" id="path-2"></path>
+        <linearGradient x1="48.680013%" y1="-8.02978516%" x2="48.680013%" y2="39.5613607%" id="linearGradient-4">
+            <stop stop-color="#000000" offset="0%"></stop>
+            <stop stop-color="#000000" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="January" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dec.partner---revenue" transform="translate(-346.000000, -946.000000)">
+            <g id="miletones" transform="translate(310.000000, 816.000000)">
+                <g id="total" transform="translate(36.000000, 100.000000)">
+                    <g id="icons/sparks" transform="translate(0.000000, 31.000000)">
+                        <g id="icons/spark-main-copy">
+                            <g id="Path-2">
+                                <g id="Combined-Shape-2">
+                                    <mask id="mask-3" fill="white">
+                                        <use xlink:href="#path-2"></use>
+                                    </mask>
+                                    <use id="Combined-Shape" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+                                    <circle id="Oval" fill="url(#linearGradient-4)" opacity="0.200000003" style="mix-blend-mode: multiply;" mask="url(#mask-3)" cx="14.5" cy="37.0555556" r="24.1666667"></circle>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
