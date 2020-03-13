@@ -1,6 +1,6 @@
 import React from 'react';
 import VideoPlayer from '../client/src/components/player/VideoPlayer.jsx';
-import axios from 'axios';
+import Plyr from 'plyr';
 
 
 import { shallow, mount, render } from 'enzyme';
@@ -8,7 +8,7 @@ import { shallow, mount, render } from 'enzyme';
 
 describe('Video Player Component', () => {
 
-    test('will invoke VideoPlayer Component', () => {
+    test('should invoke VideoPlayer Component', () => {
         const func = jest.fn();
 
         const a = new func(<VideoPlayer />);
@@ -17,7 +17,7 @@ describe('Video Player Component', () => {
 
     })
 
-    test('will invoke initVideoPlayer', () => {
+    test('should invoke initVideoPlayer', () => {
         const wrapper = shallow(<VideoPlayer />);
         const instance = wrapper.instance();
 
@@ -28,5 +28,10 @@ describe('Video Player Component', () => {
 
     })
 
+    test('video player should have a plyr state that is an instance of Plyr', () => {
+        const videoPlayer = mount(<VideoPlayer />);
+
+        expect(videoPlayer.state('plyr')).toBeInstanceOf(Plyr);
+    })
 
 })

@@ -24,7 +24,6 @@ class VideoPlayer extends Component {
     }
 
     initVideoPlayer() {
-
         return new Plyr('#player', 
             {captions: 
                 {active: true, update: true, language: 'en'}
@@ -38,10 +37,6 @@ class VideoPlayer extends Component {
         return (
             <video id="player" playsInline crossOrigin="true" controls>
                 <source src={this.state.src}  type={this.state.format} />
-                {/* <source src="/path/to/video.mp4" type="video/mp4" />
-                <source src="/path/to/video.webm" type="video/webm" />
-                <track kind="captions" label="English captions" src="/path/to/captions.vtt" srclang="en" default /> */}
-
             </video>
         )
     }
