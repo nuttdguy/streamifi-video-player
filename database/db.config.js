@@ -1,6 +1,6 @@
 module.exports = {
-    user: 'root',
-    password: 'password',
+    user: 'student',
+    password: 'student',
     database: 'streamifi',
     charset: 'utf8mb4'
 }

@@ -1,13 +1,14 @@
 const webpack = require('webpack');
 const path = require('path');
 
+const SRC_DIR = path.join(__dirname, 'client', 'src');
+const DIST_DIR = path.join(__dirname, 'dist');
+
 module.exports = {
-    entry: {
-        './dist/app': path.resolve(__dirname, 'client/src/index.jsx'),
-    },
+    entry: `${SRC_DIR}/index.jsx`,
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, './public')
+        path: DIST_DIR
     },
     module: {
         rules: [         
@@ -22,10 +23,8 @@ module.exports = {
         ]
     },
     resolve: {
-        enforceExtension: false,
-        modules: [
-            'node_modules'
-        ],
+        extensions: ['.js', '.jsx'],
+        modules: ['node_modules'],
     },
     devtool: "source-map"
 }

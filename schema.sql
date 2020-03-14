@@ -1,23 +1,23 @@
-DROP DATABASE IF EXISTS Streamifi;
+DROP DATABASE IF EXISTS streamifi;
 
-CREATE DATABASE Streamifi;
+CREATE DATABASE streamifi;
 
-USE Streamifi;
+USE streamifi;
 
 CREATE TABLE Streams (
     stream_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    stream_token TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-    stream_title TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-    stream_audience VARCHAR(40) NOT NULL,
-    stream_subheading TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-    stream_url TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-    stream_created_at DATE NOT NULL
+    token TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    title TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    audience VARCHAR(40) NOT NULL,
+    subheading TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    url TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    created_at DATE NOT NULL
 );
 
 
 CREATE TABLE Redeemables (
     redeemables_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    redeemables_img VARCHAR(64) NOT NULL,
-    redeemables_price INT NOT NULL,
-    redeemables_price_category VARCHAR(64)
+    img VARCHAR(64) NOT NULL,
+    price INT NOT NULL,
+    price_category VARCHAR(64)
 );

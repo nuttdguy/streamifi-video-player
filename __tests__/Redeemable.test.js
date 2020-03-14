@@ -24,7 +24,7 @@ describe('Redeemable Component ', () => {
     test('should get redeemable json object on mount', async () => {
         const redeemableComponent = shallow(<Redeemable />);
 
-        const json = redeemableComponent.getRedeemableItems();
+        expect(redeemableComponent.state('redeemables').length).toGreaterThan(0);
         
     })
 

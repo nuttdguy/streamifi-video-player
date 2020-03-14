@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
-const db = require('../database/db-connection.js');
+const { Streams, Redeemables } = require('../model/index.js');
 
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/dist'));
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
@@ -13,30 +13,26 @@ app.use((req, res, next) => {
 
 app.get('/streams', (req, res, next) => {
 
-    db.connection.getModel('Streams', (err, data) => {
+    Streams.getAll((err, data) => {
         if (err) {
             console.log('Error, ', err);
-            res.status(404).send();
-            return;
+            return res.status(404).send();
         }
 
-        res.status(200).send(data);
-        next();
+        return res.status(200).send(data);
     })
 
 })
 
 app.get('/redeemables', (req, res, next) => {
     
-    db.connection.getModel('Redeemables', (err, data) => {
+    Redeemables.getAll((err, data) => {
         if (err) {
             console.log('Error, ', err);
-            res.status(404).send();
-            return;
+            return res.status(404).send();
         }
 
-        res.status(200).send(data);
-        next();
+        return res.status(200).send(data);
     })
 })
 

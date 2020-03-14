@@ -1,6 +1,8 @@
 node_modules
 public/dist
 coverage
+database/db.config.js
+database/seed-data/*
 
 
 # MISC 

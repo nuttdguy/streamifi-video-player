@@ -1,83 +1,67 @@
 const db = require('./db-connection.js');
 const faker = require('faker');
-const channeldata = require('./channel-data.json');
-const recordings = require('./recordings-data.json');
+const channeldata = require('./seed-data/channel-data.json');
 
 
-// functions to create objects
-const extractChannelIntoObject = function() {
-    let dataResult = [];
+// create stream objects
+const createStreams = function() {
+    const streams = [];
 
     channeldata.forEach(obj => {
-        let r = {
+        let stream = {
             stream_id: obj.id,
-            stream_token: obj.token,
-            stream_title: obj.name,
-            stream_audience: 'nothing to show ...',
-            stream_subheading: 'Nothing to show ...',
-            stream_Url: `https://mixer.com/api/v1/channels/${obj.id}/manifest.m3u8`,
-            stream_created_at: new Date(obj.createdAt),
+            token: obj.token,
+            title: obj.name,
+            audience: 'nothing to show ...',
+            subheading: 'Nothing to show ...',
+            url: `https://mixer.com/api/v1/channels/${obj.id}/manifest.m3u8`,
+            created_at: new Date(obj.createdAt),
         }
-        dataResult.push(r);
+        streams.push(stream);
     })
 
-    // console.log(dataResult);
-    return dataResult;
+    return streams;
 }
 
-const createRedeemablesData = function() {
-    const redeemablesArr = [];
-    for (let i = 0; i <= 100; i++) {
-        const obj = {};
+// create redeemable objects
+const createRedeemables = function() {
 
-        obj.redeemables_img = faker.image.food();
-        obj.redeemables_price = faker.commerce.price();
-        obj.redeemables_price_category = i % 2 === 0 ? 'Embers' : 'Sparks';
-        redeemablesArr.push(obj);
+    const redeemables = [];
+
+    for (let i = 0; i <= 100; i++) {
+        const redeemable = {};
+
+        redeemable.img = faker.image.food();
+        redeemable.price = faker.commerce.price();
+        redeemable.price_category = i % 2 === 0 ? 'Embers' : 'Sparks';
+
+        redeemables.push(redeemable);
 
     }
-    return redeemablesArr;
+    return redeemables;
 }
 
-const extractRecordingsIntoObject = function() {
-    let dataResult = [];
+// insert seed data
+const insertRecords = function(tableName, data) {
 
-    recordings.forEach(obj => {
-        // obj = JSON.parse(obj);
-        let r = {
-            stream_id: obj.id,
-            stream_name: obj.name,
-            stream_duration: obj.duration,
-            createdAt: obj.createdAt,
-            stream_channelId: obj.channelId,
-            stream_Url: obj.vods[0].baseUrl,
-            stream_format: obj.vods[0].format,
-            stream_title: obj.vods[0].title,
-            stream_audience: obj.audience,
-
-        }
-        // console.log(obj);
-        dataResult.push(r);
-    })
-
-    // console.log(dataResult);
-    return dataResult;
-}
-
-const insertRecords = function(table, data) {
 
     for (let i = 0; i < data.length; i++) {
-        db.connection.query(`INSERT INTO ${table} SET ?`, data[i], (err, result, fields) => {
+        db.query(`INSERT INTO ${tableName} SET ?`, data[i], (err, result, fields) => {
             if (err) {
                 console.log('error=', err);
+                return err;
             }
         })
+        if (i === data.length) {
+            console.log('Done inserting records=', data.length, 'into ', tableName);
+        }
     }
+
 }
 
 // create objects 
-var channelsObject = extractChannelIntoObject();
-var redeemablesObject = createRedeemablesData();
-insertRecords('Streams', channelsObject);
-insertRecords('Redeemables', redeemablesObject);
+var arrayOfStreamObjects = createStreams();
+var arrayOfredeemableObjects = createRedeemables();
+insertRecords('Streams', arrayOfStreamObjects);
+insertRecords('Redeemables', arrayOfredeemableObjects);
 
