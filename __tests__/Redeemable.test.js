@@ -12,7 +12,7 @@ describe('Redeemable Component ', () => {
     })
 
 
-    test('on mount, should set redeemables state of type array', () => {
+    test('on mount, should redeemables state of type array', () => {
         const redeemableComponent = shallow(<Redeemable />);
 
         expect(redeemableComponent.state('redeemables')).toBeDefined();

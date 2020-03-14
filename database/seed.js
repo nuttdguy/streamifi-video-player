@@ -1,20 +1,6 @@
+const db = require('./db-connection.js');
 const channeldata = require('./channel-data.json');
 const recordings = require('./recordings-data.json');
-
-
-
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-  user: 'student',
-  password: 'student',
-  database: 'Streamifi',
-  charset: 'utf8mb4'
-});
-
-
-connection.connect( () => {
-    console.log('SQL server started ', connection.threadId );
-});
 
 
 // functions to create objects
