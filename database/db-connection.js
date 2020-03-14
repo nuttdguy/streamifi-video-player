@@ -1,10 +1,7 @@
 var mysql = require('mysql');
-var connection = mysql.createConnection({
-  user: 'student',
-  password: 'student',
-  database: 'Streamifi',
-  charset: 'utf8mb4'
-});
+var CONFIG = require('./db.config.js');
+
+var connection = mysql.createConnection(CONFIG);
 
 
 connection.connect( () => {

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 
 class Redeemable extends Component {
 
@@ -11,11 +13,22 @@ class Redeemable extends Component {
 
     componentDidMount() {
         // 
-        const redeemables = [{}, {}, {}];
+        const redeemables = this.getRedeemableItems();
 
         this.setState({
             redeemables: redeemables
         })
+    }
+
+    getRedeemableItems() {
+        axios
+            .get('http://127.0.0.1:3005/redeemables')
+            .then(data => {
+                console.log(data);
+                return data;
+            }).catch(err => {
+                console.log('err=', err);
+            })
     }
 
     render() {

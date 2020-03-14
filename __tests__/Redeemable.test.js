@@ -21,4 +21,11 @@ describe('Redeemable Component ', () => {
 
     })
 
+    test('should get redeemable json object on mount', async () => {
+        const redeemableComponent = shallow(<Redeemable />);
+
+        const json = redeemableComponent.getRedeemableItems();
+        
+    })
+
 })
