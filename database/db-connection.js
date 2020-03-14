@@ -23,7 +23,7 @@ class Redeemable {
 }
 
 
-const get = function(tableName, cb) {
+const getModel = function(tableName, cb) {
 
   connection.query(`SELECT * FROM ${tableName}`, (err, data) => {
     if (err) {
@@ -36,7 +36,7 @@ const get = function(tableName, cb) {
 
 }
 
-connection.getRedeemables = getRedeemables;
+connection.getModel = getModel;
 
 
 module.exports.connection= connection;

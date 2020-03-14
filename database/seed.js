@@ -1,4 +1,5 @@
 const db = require('./db-connection.js');
+const faker = require('faker');
 const channeldata = require('./channel-data.json');
 const recordings = require('./recordings-data.json');
 
@@ -24,6 +25,19 @@ const extractChannelIntoObject = function() {
     return dataResult;
 }
 
+const createRedeemablesData = function() {
+    const redeemablesArr = [];
+    for (let i = 0; i <= 100; i++) {
+        const obj = {};
+
+        obj.redeemables_img = faker.image.food();
+        obj.redeemables_price = faker.commerce.price();
+        obj.redeemables_price_category = i % 2 === 0 ? 'Embers' : 'Sparks';
+        redeemablesArr.push(obj);
+
+    }
+    return redeemablesArr;
+}
 
 const extractRecordingsIntoObject = function() {
     let dataResult = [];
@@ -50,10 +64,10 @@ const extractRecordingsIntoObject = function() {
     return dataResult;
 }
 
-const insertRecords = function(data) {
+const insertRecords = function(table, data) {
 
     for (let i = 0; i < data.length; i++) {
-        connection.query('INSERT INTO Streams SET ?', data[i], (err, result, fields) => {
+        db.connection.query(`INSERT INTO ${table} SET ?`, data[i], (err, result, fields) => {
             if (err) {
                 console.log('error=', err);
             }
@@ -63,5 +77,7 @@ const insertRecords = function(data) {
 
 // create objects 
 var channelsObject = extractChannelIntoObject();
-insertRecords(channelsObject);
+var redeemablesObject = createRedeemablesData();
+insertRecords('Streams', channelsObject);
+insertRecords('Redeemables', redeemablesObject);
 

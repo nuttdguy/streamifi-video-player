@@ -10,7 +10,9 @@
   "scripts": {
     "test": "jest",
     "build": "webpack -d -w",
-    "react:dev": "npm start /client/index.js"
+    "react:dev": "npm start /client/index.js",
+    "start": "nodemon server/server.js",
+    "seed:db": "node database/seed.js "
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -36,6 +38,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "faker": "^4.1.0",
     "jest": "^25.1.0",
     "jest-enzyme": "^7.1.2",
     "mocha": "^7.1.0",
