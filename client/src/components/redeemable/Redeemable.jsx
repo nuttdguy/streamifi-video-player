@@ -75,13 +75,204 @@ class Redeemable extends Component {
     return (
       <div className={'redeemable-container'}>
 
-        {this.redeemablesItemTemplate(this.state.redeemables)}
-
-        <ul>
-          <li>lvl 34</li>
-          <li>sparks 69,000</li>
-          <li>gems 0 <a>+</a></li>
+        {/* {this.redeemablesItemTemplate(this.state.redeemables)} */}
+        <ul className="menu-bar">
+          <button> </button>
+          <p>
+            <button>Embers</button>
+            <button>Sparks</button>
+          </p>
+          <button> </button>
         </ul>
+
+        <div className="scroll">
+
+          <ul className="caption">
+            <p>Skills appear here on trance_musics channel</p>
+          </ul>
+
+          <ul>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r1.gif'></img>
+
+                <div >
+                  <img src='../dist/img/ember.png'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r2.gif'></img>
+                <div >
+                  <img src='../dist/img/ember.png'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r5.gif'></img>
+                <div >
+                  <img src='../dist/img/spark-coin.svg'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r1.gif'></img>
+                <div >
+                  <img src='../dist/img/ember.png'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r2.gif'></img>
+                <div >
+                  <img src='../dist/img/ember.png'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r5.gif'></img>
+                <div >
+                  <img src='../dist/img/spark-coin.svg'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r1.gif'></img>
+                <div >
+                  <img src='../dist/img/ember.png'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r2.gif'></img>
+                <div >
+                  <img src='../dist/img/ember.png'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r5.gif'></img>
+                <div >
+                  <img src='../dist/img/spark-coin.svg'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r1.gif'></img>
+                <div >
+                  <img src='../dist/img/ember.png'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r2.gif'></img>
+                <div >
+                  <img src='../dist/img/ember.png'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r5.gif'></img>
+                <div >
+                  <img src='../dist/img/spark-coin.svg'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r1.gif'></img>
+                <div >
+                  <img src='../dist/img/ember.png'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r2.gif'></img>
+                <div >
+                  <img src='../dist/img/ember.png'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+            <li >
+              <a href='#'>
+                <img src='../dist/img/r5.gif'></img>
+                <div >
+                  <img src='../dist/img/spark-coin.svg'></img>
+                  <span>500</span>
+                </div>
+              </a>
+            </li>
+
+
+          </ul>
+
+        </div>
+        {/* END OF SCROLL BAR */}
+
+
+        <div className="stats">
+          <div className="lvl">
+            <div className="lvl-container" >
+              <span>LVL 34</span>
+            </div>
+          </div>
+
+          <div>
+            <div className="spark-container">
+              <img src='../dist/img/spark-coin.svg' />
+              <span>69,000</span>
+            </div>
+
+            <div className="ember-container">
+              <img src='../dist/img/ember.png' />
+              <span>0</span>
+              <button>+</button>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     )
   }
