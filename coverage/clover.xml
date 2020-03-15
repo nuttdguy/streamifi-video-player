@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1584142734526" clover="3.2.0">
-  <project timestamp="1584142734526" name="All files">
-    <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="9" elements="23" coveredelements="23" complexity="0" loc="14" ncloc="14" packages="3" files="3" classes="3"/>
-    <package name="components">
+<coverage generated="1584228379256" clover="3.2.0">
+  <project timestamp="1584228379256" name="All files">
+    <metrics statements="26" coveredstatements="18" conditionals="2" coveredconditionals="0" methods="16" coveredmethods="12" elements="44" coveredelements="30" complexity="0" loc="26" ncloc="26" packages="4" files="4" classes="4"/>
+    <package name="service">
+      <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+      <file name="apiService.js" path="/home/phouthalang/Desktop/hack-reactor/Streamifi-Video-Player/client/service/apiService.js">
+        <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="App.jsx" path="/home/phouthalang/Desktop/hack-reactor/Streamifi-Video-Player/client/src/components/App.jsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
@@ -11,7 +23,7 @@
         <line num="18" count="4" type="stmt"/>
       </file>
     </package>
-    <package name="components.player">
+    <package name="src.components.player">
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="VideoPlayer.jsx" path="/home/phouthalang/Desktop/hack-reactor/Streamifi-Video-Player/client/src/components/player/VideoPlayer.jsx">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
@@ -23,15 +35,21 @@
         <line num="36" count="8" type="stmt"/>
       </file>
     </package>
-    <package name="components.redeemable">
-      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+    <package name="src.components.redeemable">
+      <metrics statements="11" coveredstatements="6" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="5"/>
       <file name="Redeemable.jsx" path="/home/phouthalang/Desktop/hack-reactor/Streamifi-Video-Player/client/src/components/redeemable/Redeemable.jsx">
-        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="6" count="4" type="stmt"/>
-        <line num="7" count="4" type="stmt"/>
-        <line num="13" count="3" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
-        <line num="21" count="7" type="stmt"/>
+        <metrics statements="11" coveredstatements="6" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="5"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="14" count="6" type="stmt"/>
+        <line num="18" count="6" type="stmt"/>
+        <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="31" count="6" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="47" count="6" type="stmt"/>
       </file>
     </package>
   </project>

@@ -7,25 +7,31 @@ import { shallow } from 'enzyme';
 describe('Redeemable Component ', () => {
 
     test('should render Redeemable Component', () => {
-        const redeemableComponent = shallow(<Redeemable />);
-        expect(redeemableComponent.exists());
+        const wrapper = shallow(<Redeemable />);
+        expect(wrapper.exists());
     })
 
 
     test('on mount, should redeemables state of type array', () => {
-        const redeemableComponent = shallow(<Redeemable />);
+        const wrapper = shallow(<Redeemable />);
 
-        expect(redeemableComponent.state('redeemables')).toBeDefined();
-        expect(redeemableComponent.state('redeemables')).toBeInstanceOf(Array);
-        expect(redeemableComponent.state('redeemables').length).toBeGreaterThan(0);
+        expect(wrapper.state('redeemables')).toBeDefined();
+        expect(wrapper.state('redeemables')).toBeInstanceOf(Array);
 
     })
 
-    test('should get redeemable json object on mount', async () => {
-        const redeemableComponent = shallow(<Redeemable />);
+    test('should get redeemable json object and set on mount', () => {
+        const wrapper = shallow(<Redeemable />);
+        const redeemableInstance = wrapper.instance();
+        redeemableInstance.componentDidMount();
 
-        expect(redeemableComponent.state('redeemables').length).toGreaterThan(0);
-        
+        expect(wrapper.state('redeemables')).toBeInstanceOf(Array);
+    })
+
+    test('should render an <ul> and <li> in redeemables html template', () => {
+        const wrapper = shallow(<Redeemable />);
+
+        expect(wrapper.containsAnyMatchingElements(['<ul /> <li />']));
     })
 
 })

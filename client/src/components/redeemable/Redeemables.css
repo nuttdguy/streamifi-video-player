@@ -1,0 +1,72 @@
+
+ul {
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    height: 64px;
+}
+
+li {
+    list-style: none;
+}
+
+li > span {
+    position: relative;
+    text-align: center;
+    vertical-align: bottom;
+    line-height: 64px; 
+}
+
+.redeemable-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgba(255,255,255,0.6);
+    background: #212c3d;
+    position: relative;
+    width: 354px;
+}
+
+
+.price-container {
+    display: flex;
+    width: 81px;
+    height: 29px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.2);
+    margin: 0 7.5px;
+    border-radius: 16px;
+}
+
+
+ul.redeemable-caption,
+ul.redeemable-category {
+    display: block;
+    text-align: center;
+}
+
+ul.redeemable-category > li {
+    width: 33%;
+}
+
+.redeemable-list {
+    width: 30%;
+}
+
+.redeemable-list > li {
+    display: inline-block;
+}
+
+img {
+    display: inline-flex;
+    width: 64px;
+    height: 64px;
+    border-radius: 24px;
+}
+
+.price {
+    width: 16px;
+    height: 16px;
+}

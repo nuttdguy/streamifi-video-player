@@ -27,11 +27,13 @@ const createStreams = function() {
 const createRedeemables = function() {
 
     const redeemables = [];
+    let counter = 0;
 
     for (let i = 0; i <= 100; i++) {
         const redeemable = {};
+        counter = counter === 50 ? 0 : counter + 1;
 
-        redeemable.img = faker.image.food();
+        redeemable.img = '../dist/img/r'+counter+'.gif';
         redeemable.price = faker.commerce.price();
         redeemable.price_category = i % 2 === 0 ? 'Embers' : 'Sparks';
 
