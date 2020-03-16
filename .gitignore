@@ -1,6 +1,7 @@
 node_modules
 public/dist
-coverage
+coverage/*
+/coverage
 database/db.config.js
 database/seed-data/*
 
