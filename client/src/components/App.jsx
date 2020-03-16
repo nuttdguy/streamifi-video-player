@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import VideoPlayer from '../components/player/VideoPlayer.jsx'
 import Redeemable from '../components/redeemable/Redeemable.jsx'
-
+import VideoFooterBar from '../components/video-footer-bar/VideoFooterBar.jsx'
 
 class App extends Component {
 
@@ -19,8 +19,8 @@ class App extends Component {
             <div>
                 <VideoPlayer />
                 <Redeemable />
-                <div> Video Controls / Settings Component </div>
-                <div> Video Player Footer Component </div>
+                <VideoFooterBar />
+                {/* <div> Video Controls / Settings Component </div> */}
             </div>
         )
     }

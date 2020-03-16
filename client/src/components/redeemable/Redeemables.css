@@ -190,7 +190,7 @@ li > a > div {
 
 .stats {
     position: relative;
-    bottom: 5px;
+    bottom: 0;
 
     display: flex;
     flex-direction: row;
@@ -260,6 +260,7 @@ li > a > div {
     border: none;
     box-shadow: none;
     background-color: rgba(221, 32, 138, 1);
+    border-radius: 3px;
 }
 
 .stats img {

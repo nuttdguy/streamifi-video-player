@@ -1,0 +1,115 @@
+/* flex-direction
+display
+flex-wrap
+justify-content
+align-items
+order
+flex-basis
+border */
+
+.video-footer-bar {
+    position: relative;
+    top: 0;
+    height: 60px;
+    margin: 0;
+    padding: 0;
+
+    background-color: rgba(86, 97, 115, 1);
+    color: rgba(255, 255, 255, 1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.video-footer-bar > div {
+    display: flex;
+    flex-direction: row;
+}
+
+.avatar-container {
+    flex: 80px 0 0 0;
+}
+
+.avatar-container img {
+    width: 60px;
+    height: 60px;
+}
+
+/* VIDEO HEADING CONTAINER / TITLE  */
+
+.live-viewer-container  {
+    flex: 1;
+    position: relative;
+    top: 17px;
+}
+
+.live-viewer-container > span {
+    background: rgba(33,44,61, 1);
+    border-radius: 7px;
+    padding: 4px 7px;
+}
+
+.video-heading-container {
+    flex: 3
+}
+
+
+h4, p {
+    margin: 2px 8px 0px;
+    padding: 4px;
+}
+
+p {
+    font-size: .9em;
+    color: rgba(255, 255, 255, .6)
+}
+
+p > span {
+    color: crimson;
+    font-weight: 700;
+    font-style: italic;
+    padding-left: 8px;
+}
+
+/* SKILLS CONTAINER + BUTTON */
+
+.skills-container {
+    flex: 2;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.skills-container img {
+    width: 34px;
+    height: 34px;
+    padding-right: 8px;
+}
+
+.skills-container button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.skills-container button:after {
+    padding-left: 8px;
+    content: '^'
+}
+
+.skills-container > div > button {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 1);
+
+    border-width: 0;
+    border-style: hidden;
+    border-color: transparent;
+    border-image: none;
+
+    box-shadow: none;
+    background-color: transparent;
+    width: 152px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+}
