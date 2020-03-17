@@ -56,10 +56,8 @@ const insertRecords = function(tableName, data) {
                 return err;
             }
         })
-        if (i === data.length) {
-            console.log('Done inserting records=', data.length, 'into ', tableName);
-        }
     }
+    console.log('Done inserting records=', data.length, 'into ', tableName);
 
 }
 
