@@ -19,5 +19,6 @@ CREATE TABLE Redeemables (
     redeemables_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     img VARCHAR(64) NOT NULL,
     price INT NOT NULL,
-    price_category VARCHAR(64)
+    price_category VARCHAR(64),
+    price_category_url VARCHAR(64) NOT NULL
 );

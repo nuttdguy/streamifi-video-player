@@ -65,7 +65,7 @@
 }
 
 .title { font-size: 1em; color: #fff}
-.subtitle { font-size: .7em; color: rgba(255, 255, 255, .6)  }
+.subtitle { font-size: .8em; color: rgba(255, 255, 255, .6)  }
 
 .viewCount {
     width: 48px;
@@ -80,6 +80,11 @@
 
     position: relative;
     top: 12px;
+}
+
+.audience {
+    color: rgb(204, 26, 26);
+    font-style: italic;
 }
 
 /* applies styles to skills  */
@@ -102,6 +107,7 @@
     text-align: left;
     padding: 4px 4px;
 
+    font-family: 'Dosis', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #fff;
     font-size: .9em;
     font-weight: bold;
@@ -109,6 +115,14 @@
 
     background-color: transparent;
     border: none;
+    box-shadow: none;
+}
+
+
+.childSkills button:active,
+.childSkills button:focus,
+.childSkills button:hover  {
+    outline: none;
     box-shadow: none;
 }
 

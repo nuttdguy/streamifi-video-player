@@ -3,6 +3,9 @@
     top: 60px;
     left: 0;
     width: 76vw;
+    font-family: 'Dosis', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
 }
 
 .videoPlayerContainer {
@@ -27,4 +30,9 @@
     position: absolute;
     bottom: -220px;
     width: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
 }

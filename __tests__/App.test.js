@@ -8,11 +8,12 @@ describe('App component', () => {
 
     test('should render the <App /> component', () => {
         const wrapper = shallow( <App /> );
+        expect(wrapper.exists())
     })
 
-    test('should have 4 children components', () => {
+    test('should have children components', () => {
         const wrapper = shallow( <App /> );
-        expect(wrapper.children()).toHaveLength(4);
+        expect(wrapper.children().length).toBeGreaterThan(0);
     })
 
     // examples usage
@@ -20,8 +21,19 @@ describe('App component', () => {
         expect(mount(<App />)).toHaveLength(1);
     })
 
-    test('should render static HTML', () => {
-        expect(render(<App />).text()).toContain('Video')
+    test('should render video html element', () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.contains('<video>'))
+    })
+
+    test('should change menu state', () => {
+        const wrapper = shallow(<App />);
+        const instance = wrapper.instance();
+
+        expect(wrapper.state('showRedeemableMenu')).toBe(false);
+
+        instance.showRedeemableMenu();
+        expect(wrapper.state('showRedeemableMenu')).toBe(true)
     })
 
 })

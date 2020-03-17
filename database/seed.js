@@ -36,6 +36,8 @@ const createRedeemables = function() {
         redeemable.img = '../dist/img/r'+counter+'.gif';
         redeemable.price = faker.commerce.price();
         redeemable.price_category = i % 2 === 0 ? 'Embers' : 'Sparks';
+        redeemable.price_category_url = redeemable.price_category === 'Embers' ?
+        '../dist/img/ember.png' : '../dist/img/spark-coin.svg';
 
         redeemables.push(redeemable);
 

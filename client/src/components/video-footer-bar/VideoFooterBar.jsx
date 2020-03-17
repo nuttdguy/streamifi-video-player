@@ -11,6 +11,7 @@ class VideoFooterBar extends Component {
     }
 
     render() {
+        const { onShowRedeemableMenu } = this.props;
 
         return (
             <div className={styles.backgroundFooter } >
@@ -21,7 +22,7 @@ class VideoFooterBar extends Component {
 
                 <div className={styles.childDescription }>
                     <p className={styles.title}>xbox is down lets hang in there / Streamloots Partner / #RGS <span className={styles.viewCount}>54</span></p>
-                    <p className={styles.subtitle}>The Jackbox Party Pack 3 <span> 18+ Stream </span></p>
+                    <p className={styles.subtitle}>The Jackbox Party Pack 3 <span className={styles.audience}> 18+ Stream </span></p>
                 </div>
 
                 <div className={styles.childSkills }>
@@ -29,7 +30,7 @@ class VideoFooterBar extends Component {
                         <img src='../dist/img/skils-icon.svg' />
                     </div>
                     <div className={styles.flexGrow132}>
-                        <button>Skills</button>
+                        <button onClick={onShowRedeemableMenu}>Skills</button>
                     </div>
                 </div>
             </div>

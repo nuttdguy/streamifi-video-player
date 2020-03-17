@@ -10,25 +10,48 @@ class Fake extends Component {
 
     render() {
         return (
-            <div className={styles.backgroundFooter } >
+            <div className={styles.parentContainer} >
+                <div className={styles.parentOverlay}></div>
+                {/* restyle and contain the redeemables window */}
 
-                <div className={styles.childAvatar }>
-                    <img src='../dist/img/avatar64.jpg' />
-                </div>
-
-                <div className={styles.childDescription }>
-                    <p className={styles.title}>xbox is down lets hang in there / Streamloots Partner / #RGS <span className={styles.viewCount}>54</span></p>
-                    <p className={styles.subtitle}>The Jackbox Party Pack 3 <span> 18+ Stream </span></p>
-                </div>
-
-                <div className={styles.childSkills }>
-                    <div className={styles.childSkillsImg}>
-                        <img src='../dist/img/skils-icon.svg' />
+                <div className={styles.outerScrollWindow}>
+                    <div className={styles.menubar}>
+                        <ul>
+                            <li>[L]</li>
+                            <li>Embers</li>
+                            <li>Sparks</li>
+                            <li>Channel</li>
+                            <li>[R]</li>
+                        </ul>
                     </div>
-                    <div className={styles.flexGrow132}>
-                        <button>Skills</button>
+
+                    <div className={styles.innerScrollWindow}>
+                        <div>
+                            <p>subheading</p>
+                        </div>
                     </div>
+
+                    <div className={styles.footer}>
+                        <div>
+                            <div>
+                                <li>level</li>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <li>level</li>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <li>level</li>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
+
             </div>
         )
     }

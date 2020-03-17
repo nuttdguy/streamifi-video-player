@@ -8,6 +8,7 @@ class Redeemable extends Component {
     super(props);
     this.state = {
       redeemables: [],
+      menuItems: []
     }
   }
 
@@ -16,255 +17,120 @@ class Redeemable extends Component {
   }
 
   getRedeemables() {
+
     ApiService.getRedeemables((error, redeemables) => {
       if (error) {
         return console.log('Error=', error);
       } else {
+
+        const menuItems = this.filterPriceCategoriesToMenuItems(redeemables);
         this.setState({
-          redeemables: redeemables
+          redeemables: redeemables,
+          menuItems: menuItems
         })
-        return;
       }
     })
   }
 
-  redeemablesItemTemplate(redeemables) {
+  /////////////////////////////////////////////
+  // HELPER 
+  /////////////////////////////////////////////
 
-    const labels = {};
-    for (let key in redeemables) {
-      if (redeemables[key]['price_category']) {
-        labels[redeemables[key]['price_category']] = redeemables[key]['price_category'];
+  // Filter and extract menu items from redeemables object
+  filterPriceCategoriesToMenuItems(redeemables) {
+    const priceCategories = {};
+    const menuItems = [];
+    redeemables.forEach(item => {
+      const category = item.price_category;
+
+      if (!priceCategories.hasOwnProperty(category)) {
+        priceCategories[category] = category;
+        menuItems.push(category);
       }
-    }
 
-    const labelList = [];
-    for (let key in labels) {
-      labelList.push(labels[key]);
-    }
+    });
+    return menuItems;
+  }
 
-    const labelItems = labelList.map(label => <li>{label}</li>);
+  /////////////////////////////////////////////
+  // TEMPLATES
+  /////////////////////////////////////////////
 
-    const itemList = redeemables.map((item, idx) => {
-
-      return (
-        <ul className={styles['redeemable-list']}>
-          <li key={item.redeemables_id} >
-            <img src={item.img}></img>
-            <div className={'price-container'}>
-              <img className={'price'} src={'../dist/img/ember.png'}></img>
-              <span>500</span>
-            </div>
-          </li>
-        </ul>
-      )
-    })
-
+  
+  // Render menubar items 
+  renderMenubar(items) {
     return (
-      <div >
-        <ul className={'redeemable-category'}>{labelItems}</ul>
-        <ul className={'redeemable-caption'}>
-          <li>Skills appear here on trance_musics channel</li>
-        </ul>
-        {itemList}
-      </div>
+      <ul className={styles.menubar}>
+        <button> </button>
+        <p>
+          {items.map((item, idx) => 
+            { return <span key={item + idx}><button >{item}</button></span> } 
+          )}
+        </p>
+        <button> </button>
+      </ul>
+    )
+  }
+
+  renderItemTemplateWith(redeemableItem) {
+    return (
+      <li key={redeemableItem.redeemables_id}>
+        <a href='#'>
+          <img src={redeemableItem.img} alt="redeemableItem" ></img>
+
+          <div >
+            <img src={redeemableItem.price_category_url}></img>
+            <span>500</span>
+          </div>
+        </a>
+      </li>
     )
   }
 
   render() {
+    const { redeemables, menuItems } = this.state;
 
     return (
-      <div className={styles['redeemable-container']}>
+      <div className={styles.redeemableContainer}>
 
-        {/* {this.redeemablesItemTemplate(this.state.redeemables)} */}
-        <ul className={styles["menu-bar"]}>
-          <button> </button>
-          <p>
-            <button>Embers</button>
-            <button>Sparks</button>
-          </p>
-          <button> </button>
-        </ul>
+        {/* Displays the menubar  */}
+        {this.renderMenubar(menuItems)}
 
-        <div className={styles["scroll"]}>
-
-          <ul className={styles["caption"]}>
+        {/* Enable scrolling and display redeemable items */}
+        <div className={styles.scroll}>
+          <div className={styles.caption}>
             <p>Skills appear here on trance_musics channel</p>
-          </ul>
+          </div>
+
+          <div className={styles.captionRedeemable}>
+            <p>Embers</p>
+          </div>
 
           <ul>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r1.gif'></img>
-
-                <div >
-                  <img src='../dist/img/ember.png'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r2.gif'></img>
-                <div >
-                  <img src='../dist/img/ember.png'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r5.gif'></img>
-                <div >
-                  <img src='../dist/img/spark-coin.svg'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r1.gif'></img>
-                <div >
-                  <img src='../dist/img/ember.png'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r2.gif'></img>
-                <div >
-                  <img src='../dist/img/ember.png'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r5.gif'></img>
-                <div >
-                  <img src='../dist/img/spark-coin.svg'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r1.gif'></img>
-                <div >
-                  <img src='../dist/img/ember.png'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r2.gif'></img>
-                <div >
-                  <img src='../dist/img/ember.png'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r5.gif'></img>
-                <div >
-                  <img src='../dist/img/spark-coin.svg'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r1.gif'></img>
-                <div >
-                  <img src='../dist/img/ember.png'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r2.gif'></img>
-                <div >
-                  <img src='../dist/img/ember.png'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r5.gif'></img>
-                <div >
-                  <img src='../dist/img/spark-coin.svg'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r1.gif'></img>
-                <div >
-                  <img src='../dist/img/ember.png'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r2.gif'></img>
-                <div >
-                  <img src='../dist/img/ember.png'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-            <li >
-              <a href='#'>
-                <img src='../dist/img/r5.gif'></img>
-                <div >
-                  <img src='../dist/img/spark-coin.svg'></img>
-                  <span>500</span>
-                </div>
-              </a>
-            </li>
-
-
+            {redeemables.map(redeemable => {
+              return this.renderItemTemplateWith(redeemable)
+            })}
           </ul>
 
         </div>
-        {/* END OF SCROLL BAR */}
+        
 
-
-        <div className={styles["stats"]}>
-          <div className={styles["lvl"]}>
-            <div className={styles["lvl-container"]} >
+        {/* Display the redeemable footer stats */}
+        <div className={styles.stats}>
+          <div className={styles.lvl}>
+            <div className={styles.lvlContainer} >
               <span>LVL 34</span>
             </div>
           </div>
 
           <div>
-            <div className={styles["spark-container"]}>
+            
+            <div className={styles.sparkContainer}>
               <img src='../dist/img/spark-coin.svg' />
               <span>69,000</span>
             </div>
 
-            <div className={styles["ember-container"]}>
+            <div className={styles.emberContainer}>
               <img src='../dist/img/ember.png' />
               <span>0</span>
               <button>+</button>

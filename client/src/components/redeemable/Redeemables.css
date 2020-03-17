@@ -7,7 +7,7 @@ order
 flex-basis
 border */
 
-.redeemable-container {
+.redeemableContainer {
     display: block;
     top: 0;
     position: relative;
@@ -20,7 +20,7 @@ border */
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 10px 10px 0 0;
 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Dosis', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgba(255,255,255,0.6);
     background: #212C3E;
 }
@@ -29,7 +29,7 @@ border */
 /* MENU_BAR  */
 
 
-.menu-bar {
+.menubar {
     position: relative;
     top: 0;
     display: flex;
@@ -37,47 +37,73 @@ border */
     align-items: center;
 }
 
-.menu-bar > p {
+.menubar > p {
     flex: 1;
+    display: flex;
+    flex-direction: row;
 }
 
-.menu-bar button {
+.menubar button {
     background: none;
     border: none;
     box-shadow: none;
     padding-bottom: 7px;
     margin: 0 7px;
+    
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgba(255, 255, 255, 0.6);
     font-size: .9rem;
-}
 
-.menu-bar > button {
-    width: 32px;
-    height: 32px;
+    height: 100%;
     padding: 8px;
 }
 
-.menu-bar > button:hover {
+.menubar button:active,
+.menubar button:focus,
+.menubar button:hover  {
+    outline: none;
+    border-bottom: 2px solid #1fbaed;
+    box-shadow: none;
+}
+
+.menubar > button {
+    width: 32px;
+    height: 100%;
+    padding: 8px;
+}
+
+.menubar p span {
+    display: flex;
+    flex-direction: row;
+    border-left: 3px groove transparent;
+    border-right: 3px groove transparent;
+}
+
+.menubar p span:active {
+    border-left: 3px groove rgba(86, 179, 241, 0.7);
+    border-right: 3px groove rgba(86, 179, 241, 0.7);
+}
+
+.menubar > button:hover {
     width: 32px;
     height: 32px;
     background-color: rgba(31, 186, 237, .4);
     border-radius: 50%;
 }
 
-.menu-bar > button:first-child::before {
+.menubar > button:first-child::before {
     content: '<';
 }
 
-.menu-bar > button:last-child::after {
+.menubar > button:last-child::after {
     content: '>';
 }
 
-.menu-bar > p > button {
+.menubar > p  button {
     border-bottom: 2px solid #1fbaed;
 }
 
-.menu-bar button:hover {
+.menubar button:hover {
     color: #fff
 }
 
@@ -85,8 +111,9 @@ border */
 /* CAPTION  */
 .caption {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     font-size: .9rem;
+    padding: 14px 21px 7px;
 }
 
 
@@ -121,6 +148,14 @@ border */
     width: 6px;
 }
 
+.captionRedeemable {
+    display: flex;
+    justify-content: center;
+    font-size: .9rem;
+    padding: 10px 0;
+}
+
+
 
 ul {
     display: flex;
@@ -129,8 +164,6 @@ ul {
     box-sizing: border-box;
 
     flex-wrap: wrap;
-    padding: 0;
-    margin: 0;
 }
 
 
@@ -142,7 +175,6 @@ a {
 
     color: rgba(255,255,255,0.6);
     font-size: .8rem;
-    padding: 4px;
 }    
 
 a:hover {
@@ -226,7 +258,7 @@ li > a > div {
     margin-left: 12px;
 }
 
-.lvl-container {
+.lvlContainer {
     width: 50px;
     height: 20px;
     line-height: 15px;
@@ -235,30 +267,30 @@ li > a > div {
     text-align: center;
 }
 
-.lvl-container span {
-    padding-left: 6px;
+.lvlContainer span {
+    padding-left: 10px;
     color: #171e2a;
     font-size: 11px;
     font-weight: bold;
     cursor: default;
 }
 
-.spark-container,
-.ember-container {
+.sparkContainer,
+.emberContainer {
     background-color: rgba(31, 186, 237, .2);
     border-radius: 6px;
     padding: 2px 4px;
     margin: 0 3px;
 }
 
-.spark-container span,
-.ember-container span,
-.ember-container button {
+.sparkContainer span,
+.emberContainer span,
+.emberContainer button {
     color: rgba(255,255,255,1);
     margin: 0 3px;
 }
 
-.ember-container button {
+.emberContainer button {
     border: none;
     box-shadow: none;
     background-color: rgba(221, 32, 138, 1);
