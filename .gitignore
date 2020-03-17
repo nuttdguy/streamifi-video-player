@@ -5,6 +5,8 @@ coverage/*
 database/db.config.js
 database/seed-data/*
 
+fake-layout
+
 
 # MISC 
 package-lock.json
