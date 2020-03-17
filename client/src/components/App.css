@@ -1,0 +1,30 @@
+.container {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 76vw;
+}
+
+.videoPlayerContainer {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.redeemableContainer {
+    position: absolute;
+    bottom: 0px;
+    right: 3%;
+}
+
+.videoFooterContainer {
+    position: absolute;
+    bottom: -60px;
+    width: 100%;
+}
+
+.fakeContainer {
+    position: absolute;
+    bottom: -220px;
+    width: 100%;
+}

@@ -6,6 +6,7 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
+    'plugin:css-modules/recommended',
     'airbnb',
   ],
   globals: {
@@ -21,7 +22,10 @@ module.exports = {
   },
   plugins: [
     'react',
+    'css-modules'
   ],
   rules: {
+    "css-modules/no-unused-class": [2, { "camelCase": true }],
+    "css-modules/no-undef-class": [2, { "camelCase": true }]
   },
 };

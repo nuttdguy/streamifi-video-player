@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import ApiService from '../../../service/apiService.js'
-import './Redeemables.css'
+import styles from './Redeemables.css'
 
 class Redeemable extends Component {
 
@@ -47,7 +47,7 @@ class Redeemable extends Component {
     const itemList = redeemables.map((item, idx) => {
 
       return (
-        <ul className={'redeemable-list'}>
+        <ul className={styles['redeemable-list']}>
           <li key={item.redeemables_id} >
             <img src={item.img}></img>
             <div className={'price-container'}>
@@ -73,10 +73,10 @@ class Redeemable extends Component {
   render() {
 
     return (
-      <div className={'redeemable-container'}>
+      <div className={styles['redeemable-container']}>
 
         {/* {this.redeemablesItemTemplate(this.state.redeemables)} */}
-        <ul className="menu-bar">
+        <ul className={styles["menu-bar"]}>
           <button> </button>
           <p>
             <button>Embers</button>
@@ -85,9 +85,9 @@ class Redeemable extends Component {
           <button> </button>
         </ul>
 
-        <div className="scroll">
+        <div className={styles["scroll"]}>
 
-          <ul className="caption">
+          <ul className={styles["caption"]}>
             <p>Skills appear here on trance_musics channel</p>
           </ul>
 
@@ -251,20 +251,20 @@ class Redeemable extends Component {
         {/* END OF SCROLL BAR */}
 
 
-        <div className="stats">
-          <div className="lvl">
-            <div className="lvl-container" >
+        <div className={styles["stats"]}>
+          <div className={styles["lvl"]}>
+            <div className={styles["lvl-container"]} >
               <span>LVL 34</span>
             </div>
           </div>
 
           <div>
-            <div className="spark-container">
+            <div className={styles["spark-container"]}>
               <img src='../dist/img/spark-coin.svg' />
               <span>69,000</span>
             </div>
 
-            <div className="ember-container">
+            <div className={styles["ember-container"]}>
               <img src='../dist/img/ember.png' />
               <span>0</span>
               <button>+</button>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Plyr from 'plyr';
+import styles from './VideoPlayer.css';
 import axios from 'axios';
 
 
@@ -9,14 +10,14 @@ class VideoPlayer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            plyr: null,
-            src: '/api/v1/channels/393920/manifest.m3u8',
-            format: 'hls'
+            plyr: null
         }
     }
 
     componentDidMount() {
         const videoPlayer = this.initVideoPlayer();
+        videoPlayer.src = '/api/v1/channels/393920/manifest.m3u8';
+        videoPlayer.format = 'hls'
         this.setState({
             plyr: videoPlayer
         })     
@@ -34,9 +35,11 @@ class VideoPlayer extends Component {
     render() {
 
         return (
-            <video id="player" playsInline crossOrigin="true" controls>
-                <source src={this.state.src}  type={this.state.format} />
-            </video>
+            <div className={styles['plyr__video-wrapper']}>
+
+                <video id="player" playsInline crossOrigin="true" controls> </video>
+
+            </div>
         )
     }
 }

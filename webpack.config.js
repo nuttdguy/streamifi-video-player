@@ -11,22 +11,36 @@ module.exports = {
         path: DIST_DIR
     },
     module: {
-        rules: [         
-                {
-                    exclude: /node_modules/, 
-                    test: [/\.js$/, /\.jsx?$/],
-                    use: { 
-                        loader: 'babel-loader', 
-                        options: { 
-                            presets: [
-                                '@babel/preset-env', 
-                                '@babel/preset-react'] } }
-                },
-                { 
-                    test: /\.css$/,
-                    use: ['style-loader', 'css-loader']
+        rules: [
+            {
+                exclude: /node_modules/,
+                test: [/\.js$/, /\.jsx?$/],
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@babel/preset-env',
+                            '@babel/preset-react']
+                    }
                 }
-        ]
+            },
+            {
+                test: /\.(css|scss)$/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                            localsConvention: 'camelCase',
+                            modules: {
+                                localIdentName: '[name]__[local]--[hash:base64:5]',
+                            },
+                        },
+                    },
+                ],
+            },
+        ],
     },
     resolve: {
         extensions: ['.js', '.jsx'],

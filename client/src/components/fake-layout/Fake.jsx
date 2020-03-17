@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import styles from './VideoFooterBar.css';
+import styles from './Fake.css';
 
-
-class VideoFooterBar extends Component {
+class Fake extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {}
     }
 
     render() {
-
         return (
             <div className={styles.backgroundFooter } >
 
@@ -37,4 +34,4 @@ class VideoFooterBar extends Component {
     }
 }
 
-export default VideoFooterBar;
+export default Fake;
