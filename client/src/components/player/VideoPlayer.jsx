@@ -16,7 +16,7 @@ class VideoPlayer extends Component {
         super(props);
         this.state = {
             plyr: null,
-            showMenu: true,
+            showMenu: false,
             showShop: false
         }
     }

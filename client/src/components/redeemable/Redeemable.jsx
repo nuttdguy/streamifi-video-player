@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import Stats from './stats/Stats.jsx';
+
 import ApiService from '../../../service/apiService.js'
 import styles from './Redeemables.css'
 
@@ -130,30 +132,8 @@ class Redeemable extends Component {
         </div>
         
 
-
         {/* Display the redeemable footer stats */}
-        <div className={styles.stats}>
-          <div className={styles.lvl}>
-            <div className={styles.lvlContainer} >
-              <span>LVL 34</span>
-            </div>
-          </div>
-
-          <div>
-            
-            <div className={styles.sparkContainer}>
-              <img src='../dist/img/spark-coin.svg' />
-              <span>69,000</span>
-            </div>
-
-            <div className={styles.emberContainer}>
-              <img src='../dist/img/ember.png' />
-              <span>0</span>
-              <button onClick={onShowShop}>+</button>
-            </div>
-          </div>
-
-        </div>
+        <Stats onShowShop={onShowShop} />
 
       </div>
     )

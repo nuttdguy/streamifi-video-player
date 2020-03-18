@@ -41,7 +41,7 @@ describe('Video Player Component', () => {
 
         expect(wrapper.state('showMenu')).toBe(false);
 
-        instance.showRedeemableMenu();
+        instance.onShowMenu();
         expect(wrapper.state('showMenu')).toBe(true)
     })
 
