@@ -130,6 +130,7 @@ class Redeemable extends Component {
         </div>
         
 
+
         {/* Display the redeemable footer stats */}
         <div className={styles.stats}>
           <div className={styles.lvl}>

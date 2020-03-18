@@ -26,15 +26,5 @@ describe('App component', () => {
         expect(wrapper.contains('<video>'))
     })
 
-    test('should change menu state', () => {
-        const wrapper = shallow(<App />);
-        const instance = wrapper.instance();
-
-        expect(wrapper.state('showRedeemableMenu')).toBe(false);
-
-        instance.showRedeemableMenu();
-        expect(wrapper.state('showRedeemableMenu')).toBe(true)
-    })
-
 })
 

@@ -34,4 +34,15 @@ describe('Video Player Component', () => {
         expect(videoPlayer.state('plyr')).toBeInstanceOf(Plyr);
     })
 
+
+    test('should change menu state', () => {
+        const wrapper = shallow(<VideoPlayer />);
+        const instance = wrapper.instance();
+
+        expect(wrapper.state('showMenu')).toBe(false);
+
+        instance.showRedeemableMenu();
+        expect(wrapper.state('showMenu')).toBe(true)
+    })
+
 })
