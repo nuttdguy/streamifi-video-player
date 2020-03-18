@@ -38,6 +38,18 @@ class Redeemable extends Component {
     })
   }
 
+
+
+  /////////////////////////////////////////////
+  // HANDLERS
+  /////////////////////////////////////////////
+
+  donateRedeemable(e) {
+    // todo
+    // onClick of redeemable, debit the quantity from the available balance
+  }
+
+
   /////////////////////////////////////////////
   // HELPER 
   /////////////////////////////////////////////
@@ -72,15 +84,14 @@ class Redeemable extends Component {
   // TEMPLATES
   /////////////////////////////////////////////
 
-  
+
   // Render menubar items 
   renderMenubar(items) {
     return (
       <ul className={styles.menubar}>
         <button> </button>
         <p>
-          {items.map((item, idx) => 
-            { return <span key={item + idx}><button >{item}</button></span> } 
+          {items.map((item, idx) => { return <span key={item + idx}><button >{item}</button></span> }
           )}
         </p>
         <button> </button>
@@ -130,7 +141,7 @@ class Redeemable extends Component {
           </ul>
 
         </div>
-        
+
 
         {/* Display the redeemable footer stats */}
         <Stats onShowShop={onShowShop} />

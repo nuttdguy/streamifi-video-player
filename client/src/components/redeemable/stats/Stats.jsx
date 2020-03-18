@@ -5,34 +5,68 @@ class Stats extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            sparks: 0,
+            embers: 0,
+            level: 0,
+            tokens: {}
+        }
+    }
+
+    /////////////////////////////////////////////
+    // LIFECYLE 
+    /////////////////////////////////////////////
+
+    componentDidMount() {
+        this.setState({
+            sparks: 100000,
+            embers: 5000,
+            level: 34,
+            tokens: {
+                sparks: '../dist/img/spark-coin.svg',
+                embers: '../dist/img/ember.png'
+            }
+        })
     }
 
 
-    render() {
+    /////////////////////////////////////////////
+    // HANDLERS
+    /////////////////////////////////////////////
 
+
+    
+    /////////////////////////////////////////////
+    // TEMPLATES
+    /////////////////////////////////////////////
+
+
+
+
+    render() {
+        const { sparks, embers, level, tokens } = this.state;
         const { onShowShop } = this.props;
 
         return (
             <div className={styles.stats}>
                 <div className={styles.lvl}>
-                <div className={styles.lvlContainer} >
-                    <span>LVL 34</span>
-                </div>
+                    <div className={styles.lvlContainer} >
+                        <span>LVL {level}</span>
+                    </div>
                 </div>
 
                 <div>
-                
-                <div className={styles.sparkContainer}>
-                    <img src='../dist/img/spark-coin.svg' />
-                    <span>69,000</span>
-                </div>
 
-                <div className={styles.emberContainer}>
-                    <img src='../dist/img/ember.png' />
-                    <span>0</span>
-                    <button onClick={onShowShop}>+</button>
-                </div>
+                    <div className={styles.sparkContainer}>
+                        <img src={tokens.sparks} />
+                        <span>{sparks}</span>
+                    </div>
+
+                    <div className={styles.emberContainer}>
+                        <img src={tokens.embers} />
+                        <span>{embers}</span>
+                        <button onClick={onShowShop}>+</button>
+                    </div>
                 </div>
 
             </div>
