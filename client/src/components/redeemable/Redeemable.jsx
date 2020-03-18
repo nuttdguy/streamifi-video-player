@@ -74,7 +74,11 @@ class Redeemable extends Component {
   // HANDLERS
   /////////////////////////////////////////////
 
-  donateRedeemable() {
+  donateRedeemable(e) {
+    console.log(e.currentTarget)
+    const target = e.currentTarget;
+    const text = target.getElementsByTagName('span')[0].innerHTML
+    console.log(text);
     // todo
     // onClick of redeemable, debit the quantity from the available balance
   }
@@ -101,7 +105,8 @@ class Redeemable extends Component {
 
   renderItemTemplateWith(redeemableItem) {
     return (
-      <li key={redeemableItem.redeemables_id}>
+      <li key={redeemableItem.redeemables_id}
+          onClick={this.donateRedeemable}>
         <a href='#'>
           <img src={redeemableItem.img} alt="redeemableItem" ></img>
 
