@@ -30,7 +30,7 @@ class VideoPlayer extends Component {
         videoPlayer.src = '/api/v1/channels/393920/manifest.m3u8';
         videoPlayer.format = 'hls'
         this.setState({
-            plyr: videoPlayer
+            plyr: videoPlayer,
         })
     }
 
@@ -66,7 +66,7 @@ class VideoPlayer extends Component {
 
 
     render() {
-        const { showMenu, showShop } = this.state;
+        const { showMenu, showShop, sparks } = this.state;
 
         return (
             <div className={styles['plyr__video-wrapper']}>
