@@ -1,12 +1,12 @@
 const express = require('express');
-const app = express();
 const { Streams, Redeemables } = require('../model/index.js');
 
+var app = express();
 
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + './dist'));
+
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 });
 
@@ -37,7 +37,10 @@ app.get('/redeemables', (req, res, next) => {
 })
 
 
+
 const port = process.env.port || 3005;
 app.listen(port, (err) => {
     console.log('Server started on port: ', port);
 });
+
+

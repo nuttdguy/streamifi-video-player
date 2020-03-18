@@ -1,7 +1,7 @@
 import React from 'react';
 import Redeemable from '../client/src/components/redeemable/Redeemable.jsx';
 
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 
 describe('Redeemable Component ', () => {
@@ -87,5 +87,49 @@ describe('Redeemable Component ', () => {
         expect(wrapper.contains('../dist/img/ember.png'));
 
     })
+
+    test('should set state on componentDidMount', () => {
+        const stat = {
+            sparks: 100000,
+            embers: 5000,
+            level: 34,
+            tokens: {
+                sparks: '../dist/img/spark-coin.svg',
+                embers: '../dist/img/ember.png'
+            }
+        }
+        const wrapper = mount(<Redeemable />)
+        wrapper.setState(stat);
+
+        expect(wrapper.state('sparks')).toEqual(100000);
+        expect(wrapper.state('embers')).toEqual(5000);
+        expect(wrapper.state('level')).toEqual(34);
+
+        const token = wrapper.state('tokens');
+        expect(token['sparks']).toEqual('../dist/img/spark-coin.svg');
+        expect(token['embers']).toEqual('../dist/img/ember.png');
+    })
+
+    test('should return wallet stats', () => {
+        const wrapper = shallow(<Redeemable />);
+        const instance = wrapper.instance();
+        const result = instance.moldWalletStatsFrom();
+
+        expect(result).toHaveProperty('sparks');
+        expect(result).toHaveProperty('embers');
+        expect(result).toHaveProperty('level');
+        expect(result).toHaveProperty('tokens');
+    })
+
+    // test('should reduce the wallet-value', () => {
+    //     const donateFunc = jest.fn();
+    //     const wrapper = mount(<Redeemable />);
+    //     const instance = wrapper.instance();
+    //     const walletStats = wrapper.state('walletStats')
+    //     instance.renderItemTemplateWith();
+
+    //     expect(donateFunc.mock.calls.length).toEqual(1);
+    //     // expect(instance.state.sparks).toBeLessThan(walletStats.sparks);
+    // })
 
 })

@@ -7,12 +7,11 @@ order
 flex-basis
 border */
 
-.redeemableContainer {
-    display: block;
+.redeemContainer {
     top: 0;
-    position: relative;
-    width: 354px!important;
-    height: calc(346px * 1.2);
+    height: 487px;
+    width: 354px;
+    /* height: calc(346px * 1.2); */
 
     overflow: hidden;
     box-sizing: content-box;
@@ -20,9 +19,9 @@ border */
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 10px 10px 0 0;
 
-    font-family: 'Dosis', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgba(255,255,255,0.6);
     background: #212C3E;
+    backdrop-filter: blur(10px);
 }
 
 
@@ -116,6 +115,13 @@ border */
     padding: 14px 21px 7px;
 }
 
+.captionRedeemable p {
+    font-size: 1.4em;
+    font-weight: 700;
+    font-variant: small-caps;
+    letter-spacing: 3px;
+}
+
 
 /* REDEEMABLES LIST + LIST SCROLL */
 
@@ -176,6 +182,7 @@ a {
     border: 3px ridge transparent;
     color: rgba(255,255,255,0.6);
     font-size: .8rem;
+    padding: 14px 14px 7px 14px;
 }    
 
 a:hover {
@@ -191,7 +198,6 @@ a:active {
 li {
     list-style: none;
     width: calc(364px / 4);
-    margin: 9px;
 }
 
 li > a > img {
@@ -204,7 +210,7 @@ li > a > img {
 li > a > div > img {
     width: 16px;
     height: 16px;
-    padding: 4px;
+    padding: 2px;
 }
 
 li > a > div {

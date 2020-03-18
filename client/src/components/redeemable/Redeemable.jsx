@@ -10,7 +10,16 @@ class Redeemable extends Component {
     super(props);
     this.state = {
       redeemables: [],
-      menuItems: []
+      menuItems: [],
+      walletStats: {
+        sparks: 0,
+        embers: 0,
+        level: 0,
+        tokens: {
+          sparks: '',
+          embers: ''
+        }
+      },
     }
   }
 
@@ -22,6 +31,12 @@ class Redeemable extends Component {
     this.getRedeemables();
   }
 
+
+  /////////////////////////////////////////////
+  // HELPER 
+  /////////////////////////////////////////////
+
+
   getRedeemables() {
 
     ApiService.getRedeemables((error, redeemables) => {
@@ -30,9 +45,12 @@ class Redeemable extends Component {
       } else {
 
         const menuItems = this.filterPriceCategoriesToMenuItems(redeemables);
+        const walletStats = this.moldWalletStatsFrom();
+
         this.setState({
           redeemables: redeemables,
-          menuItems: menuItems
+          menuItems: menuItems,
+          walletStats: walletStats
         })
       }
     })
@@ -40,22 +58,9 @@ class Redeemable extends Component {
 
 
 
-  /////////////////////////////////////////////
-  // HANDLERS
-  /////////////////////////////////////////////
-
-  donateRedeemable(e) {
-    // todo
-    // onClick of redeemable, debit the quantity from the available balance
-  }
-
-
-  /////////////////////////////////////////////
-  // HELPER 
-  /////////////////////////////////////////////
-
   // Filter and extract menu items from redeemables object
   filterPriceCategoriesToMenuItems(redeemables) {
+
     const priceCategories = {};
     const menuItems = [];
     redeemables.forEach(item => {
@@ -70,18 +75,36 @@ class Redeemable extends Component {
     return menuItems;
   }
 
+  moldWalletStatsFrom() {
+    const wallet = {
+      sparks: 5000,
+      embers: 5000,
+      level: 34,
+      tokens: {
+        sparks: '../dist/img/spark-coin.svg',
+        embers: '../dist/img/ember.png'
+      }
+    }
+    return wallet;
+  }
+
   /////////////////////////////////////////////
   // HANDLERS
   /////////////////////////////////////////////
 
   donateRedeemable(e) {
-    console.log(e.currentTarget)
     const target = e.currentTarget;
-    const text = target.getElementsByTagName('span')[0].innerHTML
-    console.log(text);
-    // todo
-    // onClick of redeemable, debit the quantity from the available balance
+    const debitAmount = target.querySelector('span').innerHTML;
+    const name = target.querySelector('div').getAttribute('name').toLowerCase();
+    // console.log(name, debitAmount);
+
+    const wallet = Object.assign({}, this.state.walletStats);
+    const balance = wallet[name] - debitAmount < 0 ? 0 : wallet[name] - debitAmount;
+
+    wallet[name] = balance;
+    this.setState({walletStats: wallet })
   }
+
 
 
   /////////////////////////////////////////////
@@ -104,13 +127,14 @@ class Redeemable extends Component {
   }
 
   renderItemTemplateWith(redeemableItem) {
+    // console.log(redeemableItem);
     return (
       <li key={redeemableItem.redeemables_id}
-          onClick={this.donateRedeemable}>
+        onClick={this.donateRedeemable.bind(this)}>
         <a href='#'>
           <img src={redeemableItem.img} alt="redeemableItem" ></img>
 
-          <div >
+          <div name={redeemableItem.price_category}>
             <img src={redeemableItem.price_category_url}></img>
             <span>500</span>
           </div>
@@ -120,11 +144,11 @@ class Redeemable extends Component {
   }
 
   render() {
-    const { redeemables, menuItems } = this.state;
+    const { redeemables, menuItems, walletStats } = this.state;
     const { onShowShop } = this.props;
 
     return (
-      <div className={styles.redeemableContainer}>
+      <div className={styles.redeemContainer}>
 
         {/* Displays the menubar  */}
         {this.renderMenubar(menuItems)}
@@ -149,7 +173,8 @@ class Redeemable extends Component {
 
 
         {/* Display the redeemable footer stats */}
-        <Stats onShowShop={onShowShop} />
+        <Stats onShowShop={onShowShop}
+          walletStats={walletStats} />
 
       </div>
     )

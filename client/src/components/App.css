@@ -17,7 +17,9 @@
 .redeemableContainer {
     position: absolute;
     bottom: 0;
-    right: 3%;
+    right: 24px;
+    backdrop-filter: blur(10px);
+    background: #212C3E;
 }
 
 .videoFooterContainer {
