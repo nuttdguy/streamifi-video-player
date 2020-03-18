@@ -29,7 +29,9 @@
 .emberContainer {
     position: absolute;
     top: 0px;
-    left: 0px;
+    left: calc(76vw - calc(100vw - 76vw));
+    display: flex;
+    justify-content: center;
 }
 
 body {

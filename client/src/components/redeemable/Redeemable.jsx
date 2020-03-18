@@ -60,6 +60,10 @@ class Redeemable extends Component {
   // HANDLERS
   /////////////////////////////////////////////
 
+  donateRedeemable() {
+    // todo
+    // onClick of redeemable, debit the quantity from the available balance
+  }
 
 
   /////////////////////////////////////////////
