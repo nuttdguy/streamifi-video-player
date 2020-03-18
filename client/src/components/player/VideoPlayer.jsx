@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import Plyr from 'plyr';
+
+import Redeemable from '../redeemable/Redeemable.jsx'
+import VideoFooterBar from '../video-footer-bar/VideoFooterBar.jsx'
+import Ember from '../redeemable/ember/Ember.jsx'
+
+import containerStyles from '../App.css'; 
 import styles from './VideoPlayer.css';
-import axios from 'axios';
 
 
 
@@ -10,7 +15,9 @@ class VideoPlayer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            plyr: null
+            plyr: null,
+            showRedeemableMenu: true,
+            showRedeemableShop: false
         }
     }
 
@@ -23,6 +30,12 @@ class VideoPlayer extends Component {
         })     
     }
 
+    showRedeemableMenu() {
+        const show = !this.state.showRedeemableMenu;
+        this.setState({showRedeemableMenu: show});
+    }
+
+
     initVideoPlayer() {
         return new Plyr('#player', 
             {captions: 
@@ -33,11 +46,23 @@ class VideoPlayer extends Component {
 
 
     render() {
+        const { showRedeemableMenu, showRedeemableShop } = this.state;
 
         return (
             <div className={styles['plyr__video-wrapper']}>
 
                 <video id="player" playsInline crossOrigin="true" controls> </video>
+
+                <div className={containerStyles.redeemableContainer}>
+                    { showRedeemableMenu ? <Redeemable /> : null }
+                </div>
+                <div className={containerStyles.videoFooterContainer}>
+                    <VideoFooterBar onShowRedeemableMenu={this.showRedeemableMenu.bind(this)}/>
+                </div>
+                
+                <div className={containerStyles.emberContainer}>
+                    { showRedeemableShop ? <Ember /> : null }
+                </div>
 
             </div>
         )
