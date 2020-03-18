@@ -12,6 +12,10 @@ class Redeemable extends Component {
     }
   }
 
+  /////////////////////////////////////////////
+  // LIFECYLE 
+  /////////////////////////////////////////////
+
   componentDidMount() {
     this.getRedeemables();
   }
@@ -53,6 +57,12 @@ class Redeemable extends Component {
   }
 
   /////////////////////////////////////////////
+  // HANDLERS
+  /////////////////////////////////////////////
+
+
+
+  /////////////////////////////////////////////
   // TEMPLATES
   /////////////////////////////////////////////
 
@@ -89,6 +99,7 @@ class Redeemable extends Component {
 
   render() {
     const { redeemables, menuItems } = this.state;
+    const { onShowShop } = this.props;
 
     return (
       <div className={styles.redeemableContainer}>
@@ -133,7 +144,7 @@ class Redeemable extends Component {
             <div className={styles.emberContainer}>
               <img src='../dist/img/ember.png' />
               <span>0</span>
-              <button>+</button>
+              <button onClick={onShowShop}>+</button>
             </div>
           </div>
 

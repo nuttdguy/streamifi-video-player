@@ -11,7 +11,7 @@ class VideoFooterBar extends Component {
     }
 
     render() {
-        const { onShowRedeemableMenu } = this.props;
+        const { onShowMenu } = this.props;
 
         return (
             <div className={styles.backgroundFooter } >
@@ -34,7 +34,7 @@ class VideoFooterBar extends Component {
                         <img src='../dist/img/skils-icon.svg' />
                     </div>
                     <div className={styles.flexGrow132}>
-                        <button onClick={onShowRedeemableMenu}>Skills</button>
+                        <button onClick={onShowMenu}>Skills</button>
                     </div>
                 </div>
             </div>

@@ -10,6 +10,8 @@ class Ember extends Component {
 
 
     render() {
+        const { onShowShop } = this.props;
+
         return (
             <div className={styles.dialog}>
                 <div className={styles.emberContainer}>
@@ -108,7 +110,7 @@ class Ember extends Component {
                         </div>
                     </div>
 
-                    <button className={styles.closeBtn} aria-label="Close dialog">
+                    <button onClick={onShowShop} className={styles.closeBtn} aria-label="Close dialog">
                         <span className={`${styles["set-mixer"]} ${styles["icon-Close"]}`}> </span>
                     </button>
                 </div>    

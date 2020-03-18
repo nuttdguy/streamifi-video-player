@@ -5,7 +5,7 @@ import Redeemable from '../redeemable/Redeemable.jsx'
 import VideoFooterBar from '../video-footer-bar/VideoFooterBar.jsx'
 import Ember from '../redeemable/ember/Ember.jsx'
 
-import containerStyles from '../App.css'; 
+import containerStyles from '../App.css';
 import styles from './VideoPlayer.css';
 
 
@@ -16,10 +16,14 @@ class VideoPlayer extends Component {
         super(props);
         this.state = {
             plyr: null,
-            showRedeemableMenu: true,
-            showRedeemableShop: false
+            showMenu: true,
+            showShop: false
         }
     }
+
+    /////////////////////////////////////////////
+    // LIFECYLE 
+    /////////////////////////////////////////////
 
     componentDidMount() {
         const videoPlayer = this.initVideoPlayer();
@@ -27,41 +31,73 @@ class VideoPlayer extends Component {
         videoPlayer.format = 'hls'
         this.setState({
             plyr: videoPlayer
-        })     
+        })
     }
 
-    showRedeemableMenu() {
-        const show = !this.state.showRedeemableMenu;
-        this.setState({showRedeemableMenu: show});
-    }
+
+    /////////////////////////////////////////////
+    // HELPER 
+    /////////////////////////////////////////////
 
 
     initVideoPlayer() {
-        return new Plyr('#player', 
-            {captions: 
-                {active: true, update: true, language: 'en'}
-            }
-        );
+        return new Plyr('#player', { captions: { active: true, update: true, language: 'en' } });
     }
 
 
+    /////////////////////////////////////////////
+    // HANDLERS
+    /////////////////////////////////////////////
+
+    onShowMenu() {
+        this.setState({ showMenu: !this.state.showMenu });
+    }
+
+    onShowShop() {
+        this.setState({ showShop: !this.state.showShop })
+    }
+
+
+
+    /////////////////////////////////////////////
+    // TEMPLATES
+    /////////////////////////////////////////////
+
+
+
     render() {
-        const { showRedeemableMenu, showRedeemableShop } = this.state;
+        const { showMenu, showShop } = this.state;
 
         return (
             <div className={styles['plyr__video-wrapper']}>
 
                 <video id="player" playsInline crossOrigin="true" controls> </video>
 
+
+                {/* Redeemable menu */}
                 <div className={containerStyles.redeemableContainer}>
-                    { showRedeemableMenu ? <Redeemable /> : null }
+                    { showMenu ? <Redeemable 
+                        onShowShop={this.onShowShop.bind(this)} /> 
+                        
+                    : null}  
                 </div>
+
+
+
+                {/* Video footer  */}
                 <div className={containerStyles.videoFooterContainer}>
-                    <VideoFooterBar onShowRedeemableMenu={this.showRedeemableMenu.bind(this)}/>
+                    <VideoFooterBar 
+                        onShowMenu={this.onShowMenu.bind(this)} />
                 </div>
-                
+
+
+
+                {/* Ember - redeemable item shop */}
                 <div className={containerStyles.emberContainer}>
-                    { showRedeemableShop ? <Ember /> : null }
+                    { showShop ? <Ember 
+                        onShowShop={this.onShowShop.bind(this)} /> 
+                    
+                    : null}
                 </div>
 
             </div>
