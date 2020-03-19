@@ -16,7 +16,7 @@ class VideoPlayer extends Component {
         super(props);
         this.state = {
             plyr: null,
-            showMenu: false,
+            showMenu: true,
             showShop: false
         }
     }
@@ -25,14 +25,14 @@ class VideoPlayer extends Component {
     // LIFECYLE 
     /////////////////////////////////////////////
 
-    componentDidMount() {
-        const videoPlayer = this.initVideoPlayer();
-        videoPlayer.src = '/api/v1/channels/393920/manifest.m3u8';
-        videoPlayer.format = 'hls'
-        this.setState({
-            plyr: videoPlayer,
-        })
-    }
+    // componentDidMount() {
+    //     const videoPlayer = this.initVideoPlayer();
+    //     videoPlayer.src = 'https://www.youtube.com/watch?v=vJNVramny9k';
+    //     videoPlayer.format = 'hls'
+    //     this.setState({
+    //         plyr: videoPlayer,
+    //     })
+    // }
 
 
     /////////////////////////////////////////////
@@ -66,27 +66,39 @@ class VideoPlayer extends Component {
 
 
     render() {
-        const { showMenu, showShop, sparks } = this.state;
+        const { showMenu, showShop } = this.state;
 
         return (
-            <div className={styles['plyr__video-wrapper']}>
+            // <div className={styles['plyr__video-wrapper']}>
 
-                <video id="player" playsInline crossOrigin="true" controls> </video>
+            //     <video id="player" playsInline crossOrigin="true" controls> 
+            //         <source src='' ></source>
+            //     </video>
+
+            <div className={styles['plyr__video-wrapper']} id="player">
+                <iframe
+                    src="https://www.youtube.com/embed/bTqVqk7FSmY?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+                    allowFullScreen
+                    allowtransparency="true"
+                    allow="autoplay"
+                    className={styles['plyr__video-wrapper']}
+                ></iframe>
+
 
 
                 {/* Redeemable menu */}
                 <div className={containerStyles.redeemableContainer}>
-                    { showMenu ? <Redeemable 
-                        onShowShop={this.onShowShop.bind(this)} /> 
-                        
-                    : null}  
+                    {showMenu ? <Redeemable
+                        onShowShop={this.onShowShop.bind(this)} />
+
+                        : null}
                 </div>
 
 
 
                 {/* Video footer  */}
                 <div className={containerStyles.videoFooterContainer}>
-                    <VideoFooterBar 
+                    <VideoFooterBar
                         onShowMenu={this.onShowMenu.bind(this)} />
                 </div>
 
@@ -94,10 +106,10 @@ class VideoPlayer extends Component {
 
                 {/* Ember - redeemable item shop */}
                 <div className={containerStyles.emberContainer}>
-                    { showShop ? <Ember 
-                        onShowShop={this.onShowShop.bind(this)} /> 
-                    
-                    : null}
+                    {showShop ? <Ember
+                        onShowShop={this.onShowShop.bind(this)} />
+
+                        : null}
                 </div>
 
             </div>

@@ -2,8 +2,9 @@
 /* STATS */
 
 .stats {
-    position: relative;
-    bottom: -4%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 
     display: flex;
     flex-direction: row;
@@ -19,31 +20,22 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-grow: 1;
 
     color: rgba(0, 0, 0, 1);
 }
 
-.stats > div:nth-of-type(1) {
-    justify-content: left;
-    flex: 1;
-}
-
-.stats > div:nth-of-type(2) {
-    justify-content: flex-end;
-    flex: 3
-}
 
 .lvl {
-    margin-left: 12px;
+    position: relative;
+    right: 100px;
 }
 
 .lvlContainer {
-    width: 50px;
-    height: 20px;
-    line-height: 15px;
+    width: 57px;
+    height: 27px;
     background-color: white;
     border-radius: 20px;
-    text-align: center;
 }
 
 .lvlContainer span {

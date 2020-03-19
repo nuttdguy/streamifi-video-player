@@ -34,7 +34,7 @@
 
 .backgroundFooter {
     composes: parentContainer;
-    background-color: rgba(86, 97, 115, 1);
+    background-color: #29374a;
 }
 
 /* size of containers */
@@ -79,7 +79,7 @@
     color: #fff;
     background-color:#212c3d;
     border-radius: 4px;
-    margin-left: 8px;
+    margin-left: 14px;
     padding-right: 8px;
     line-height: 21px;
 
@@ -88,7 +88,7 @@
 }
 
 .eye {
-    padding-right: 6px;
+    padding-right: 8px;
     padding-top: 2px;
     width: 18px;
     height: 16px;
@@ -96,7 +96,8 @@
 }
 
 .audience {
-    color: rgb(204, 26, 26);
+    padding-left: 10px;
+    color:#14ab57;
     font-style: italic;
 }
 
@@ -108,7 +109,7 @@
 }
 
 .childSkills img {
-    height: 41px;
+    height: 31px;
     min-width: 41px;
     width: 100%;
 }
@@ -142,5 +143,5 @@
 .childSkills button:after {
     content: '^';
     font-size: 1.1em;
-    padding-left: 8px;
+    padding-left: 12px;
 }

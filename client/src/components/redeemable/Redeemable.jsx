@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Stats from './stats/Stats.jsx';
+import RedeemableList from './redeemableList/RedeemableList.jsx';
+
 
 import ApiService from '../../../service/apiService.js'
 import styles from './Redeemables.css'
@@ -44,11 +46,13 @@ class Redeemable extends Component {
         return console.log('Error=', error);
       } else {
 
+
         const menuItems = this.filterPriceCategoriesToMenuItems(redeemables);
+        const sortedItems = this.sortItemsByPriceCategory(redeemables, menuItems);
         const walletStats = this.moldWalletStatsFrom();
 
         this.setState({
-          redeemables: redeemables,
+          redeemables: sortedItems,
           menuItems: menuItems,
           walletStats: walletStats
         })
@@ -88,6 +92,22 @@ class Redeemable extends Component {
     return wallet;
   }
 
+  sortItemsByPriceCategory(redeemables, menuItems) {
+    const channels = {};
+    menuItems.forEach(item => channels[item] = []);
+
+    for (let i = 0; i < redeemables.length; i++) {
+      const redeemable = redeemables[i];
+
+      for (let key in channels) {
+        if (redeemable.price_category === key) {
+          channels[key].push(redeemable);
+        }
+      }
+    }
+    return channels;
+  }
+
   /////////////////////////////////////////////
   // HANDLERS
   /////////////////////////////////////////////
@@ -95,16 +115,21 @@ class Redeemable extends Component {
   donateRedeemable(e) {
     const target = e.currentTarget;
     const debitAmount = target.querySelector('span').innerHTML;
-    const name = target.querySelector('div').getAttribute('name').toLowerCase();
+    const name = target.querySelector('button').getAttribute('name').toLowerCase();
     // console.log(name, debitAmount);
 
     const wallet = Object.assign({}, this.state.walletStats);
     const balance = wallet[name] - debitAmount < 0 ? 0 : wallet[name] - debitAmount;
 
     wallet[name] = balance;
-    this.setState({walletStats: wallet })
+    this.setState({ walletStats: wallet })
   }
 
+  goToLoc(e) {
+    const target = e.target.innerHTML;
+    const loc = window.location.href.split('#');
+    window.location.href = loc[0] + '#' + target;
+  }
 
 
   /////////////////////////////////////////////
@@ -115,65 +140,78 @@ class Redeemable extends Component {
   // Render menubar items 
   renderMenubar(items) {
     return (
-      <ul className={styles.menubar}>
-        <button> </button>
-        <p>
-          {items.map((item, idx) => { return <span key={item + idx}><button >{item}</button></span> }
-          )}
-        </p>
-        <button> </button>
-      </ul>
-    )
-  }
+      <div className={styles.tabControl}>
+          <a href='#toTop' className={styles.tabButtonLeft} >
+            <span className={styles.chevronLeft}></span>
+          </a>
+        <div className={styles.tabsContainer}>
+          <div className={styles.tabsContent}>
 
-  renderItemTemplateWith(redeemableItem) {
-    // console.log(redeemableItem);
-    return (
-      <li key={redeemableItem.redeemables_id}
-        onClick={this.donateRedeemable.bind(this)}>
-        <a href='#'>
-          <img src={redeemableItem.img} alt="redeemableItem" ></img>
+              {items.map((tabItem, idx) => {
+                return <button 
+                  onClick={this.goToLoc.bind(this)}
+                  className={styles.tabsItem}
+                  key={idx}>{tabItem}</button>
+              })}
 
-          <div name={redeemableItem.price_category}>
-            <img src={redeemableItem.price_category_url}></img>
-            <span>500</span>
           </div>
+        </div>
+        <a href='#toBottom' className={styles.tabButtonRight} >
+          <span className={styles.chevronRight}></span>
         </a>
-      </li>
+      </div>
+
+      // <ul className={styles.menubar}>
+      //   <a href='#toTop'><button></button></a>
+      //   <p>
+      //     {items.map((item, idx) => { 
+      //       return <span key={item + idx}><a href={`#${item}`}>{item}</a></span> }
+      //     )}
+      //   </p>
+      //   <a href='#toBottom'>><button></button></a>
+      // </ul>
     )
   }
+
 
   render() {
     const { redeemables, menuItems, walletStats } = this.state;
     const { onShowShop } = this.props;
+    const keys = Object.keys(redeemables).reverse();
 
     return (
       <div className={styles.redeemContainer}>
 
         {/* Displays the menubar  */}
-        {this.renderMenubar(menuItems)}
+        {this.renderMenubar(menuItems.reverse())}
 
         {/* Enable scrolling and display redeemable items */}
         <div className={styles.scroll}>
+        <div id='toTop'></div>
           <div className={styles.caption}>
-            <p>Skills appear here on trance_musics channel</p>
+            <img src={'../dist/img/avatar64.jpg'} />
+            <span>Using skills supports<span className={styles.captionUsername}>Ninja</span> </span>
           </div>
 
-          <div className={styles.captionRedeemable}>
-            <p>Embers</p>
-          </div>
+          <div>
 
-          <ul>
-            {redeemables.map(redeemable => {
-              return this.renderItemTemplateWith(redeemable)
+            {keys.map((categoryHeader, idx) => {
+              return <RedeemableList
+                key={idx}
+                redeemables={redeemables[categoryHeader]}
+                categoryHeader={categoryHeader}
+                donateRedeemable={this.donateRedeemable.bind(this)} />
             })}
-          </ul>
+          </div>
 
+
+          <div id='toBottom'></div>
         </div>
 
 
         {/* Display the redeemable footer stats */}
-        <Stats onShowShop={onShowShop}
+        <Stats 
+          onShowShop={onShowShop}
           walletStats={walletStats} />
 
       </div>
