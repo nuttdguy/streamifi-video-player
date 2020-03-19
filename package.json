@@ -14,6 +14,7 @@
     "seed:db": "node database/seed.js "
   },
   "dependencies": {
+    "@videojs/http-streaming": "^1.12.3",
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "hls.js": "^0.13.2",
