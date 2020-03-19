@@ -79,6 +79,7 @@ class Redeemable extends Component {
     return menuItems;
   }
 
+  // temporary, requires data for the current user
   moldWalletStatsFrom() {
     const wallet = {
       sparks: 5000,
@@ -92,6 +93,8 @@ class Redeemable extends Component {
     return wallet;
   }
 
+
+  // sorts the redeemable data by the price category group
   sortItemsByPriceCategory(redeemables, menuItems) {
     const channels = {};
     menuItems.forEach(item => channels[item] = []);
@@ -112,11 +115,12 @@ class Redeemable extends Component {
   // HANDLERS
   /////////////////////////////////////////////
 
+
+  // debits the donation amount from user balance
   donateRedeemable(e) {
     const target = e.currentTarget;
     const debitAmount = target.querySelector('span').innerHTML;
     const name = target.querySelector('button').getAttribute('name').toLowerCase();
-    // console.log(name, debitAmount);
 
     const wallet = Object.assign({}, this.state.walletStats);
     const balance = wallet[name] - debitAmount < 0 ? 0 : wallet[name] - debitAmount;
@@ -125,6 +129,8 @@ class Redeemable extends Component {
     this.setState({ walletStats: wallet })
   }
 
+
+  // Scrolls to location target of item category
   goToLoc(e) {
     const target = e.target.innerHTML;
     const loc = window.location.href.split('#');
@@ -161,15 +167,6 @@ class Redeemable extends Component {
         </a>
       </div>
 
-      // <ul className={styles.menubar}>
-      //   <a href='#toTop'><button></button></a>
-      //   <p>
-      //     {items.map((item, idx) => { 
-      //       return <span key={item + idx}><a href={`#${item}`}>{item}</a></span> }
-      //     )}
-      //   </p>
-      //   <a href='#toBottom'>><button></button></a>
-      // </ul>
     )
   }
 

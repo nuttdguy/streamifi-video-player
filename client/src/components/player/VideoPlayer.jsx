@@ -16,7 +16,7 @@ class VideoPlayer extends Component {
         super(props);
         this.state = {
             plyr: null,
-            showMenu: true,
+            showMenu: false,
             showShop: false
         }
     }
@@ -25,14 +25,14 @@ class VideoPlayer extends Component {
     // LIFECYLE 
     /////////////////////////////////////////////
 
-    // componentDidMount() {
-    //     const videoPlayer = this.initVideoPlayer();
-    //     videoPlayer.src = 'https://www.youtube.com/watch?v=vJNVramny9k';
-    //     videoPlayer.format = 'hls'
-    //     this.setState({
-    //         plyr: videoPlayer,
-    //     })
-    // }
+    componentDidMount() {
+        const videoPlayer = this.initVideoPlayer();
+        videoPlayer.src = 'https://www.youtube.com/watch?v=vJNVramny9k';
+        videoPlayer.format = 'hls'
+        this.setState({
+            plyr: videoPlayer,
+        })
+    }
 
 
     /////////////////////////////////////////////

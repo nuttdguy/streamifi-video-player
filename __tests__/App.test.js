@@ -21,10 +21,5 @@ describe('App component', () => {
         expect(mount(<App />)).toHaveLength(1);
     })
 
-    test('should render video html element', () => {
-        const wrapper = shallow(<App />);
-        expect(wrapper.contains('<video>'))
-    })
-
 })
 
