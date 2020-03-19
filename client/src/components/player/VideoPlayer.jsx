@@ -16,7 +16,7 @@ class VideoPlayer extends Component {
         super(props);
         this.state = {
             plyr: null,
-            showMenu: false,
+            showMenu: true,
             showShop: false
         }
     }
@@ -25,14 +25,7 @@ class VideoPlayer extends Component {
     // LIFECYLE 
     /////////////////////////////////////////////
 
-    componentDidMount() {
-        const videoPlayer = this.initVideoPlayer();
-        videoPlayer.src = 'https://www.youtube.com/watch?v=vJNVramny9k';
-        videoPlayer.format = 'hls'
-        this.setState({
-            plyr: videoPlayer,
-        })
-    }
+    componentDidMount() {  }
 
 
     /////////////////////////////////////////////
@@ -69,11 +62,6 @@ class VideoPlayer extends Component {
         const { showMenu, showShop } = this.state;
 
         return (
-            // <div className={styles['plyr__video-wrapper']}>
-
-            //     <video id="player" playsInline crossOrigin="true" controls> 
-            //         <source src='' ></source>
-            //     </video>
 
             <div className={styles['plyr__video-wrapper']} id="player">
                 <iframe

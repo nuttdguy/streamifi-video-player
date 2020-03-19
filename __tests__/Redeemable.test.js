@@ -36,11 +36,11 @@ describe('Redeemable Component ', () => {
 
     test('should filter list of unique price categories ', () => {
         const menuItems = [
-            {'price_category': 'Embers'},
-            {'price_category': 'Embers'},
-            {'price_category': 'Sparks'},
-            {'price_category': 'Embers'},
-            {'price_category': 'Sparks'}
+            { 'price_category': 'Embers' },
+            { 'price_category': 'Embers' },
+            { 'price_category': 'Sparks' },
+            { 'price_category': 'Embers' },
+            { 'price_category': 'Sparks' }
         ];
 
         const wrapper = shallow(<Redeemable />);
@@ -59,7 +59,7 @@ describe('Redeemable Component ', () => {
 
         instance.renderMenubar(menuItems);
         expect(wrapper.containsAnyMatchingElements('<button> </button>'))
-        
+
     })
 
 

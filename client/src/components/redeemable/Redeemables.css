@@ -79,25 +79,29 @@ border */
     text-transform: uppercase;
 }
 
+.tabButtonLeft:before,
+.tabButtonRight:after {
+    position: absolute;
+    top: 10px;
+
+}
+
 .tabButtonLeft:before {
     content: "<";
-    position: absolute;
-    left: 16px;
-    top: 14px;
+    right: 14px;
 
 }
 
 .tabButtonRight:before {
     content: ">";
-    position: absolute;
-    right: 16px;
-    top: 14px;
+    left: 14px;
+
 }
 
 .chevronLeft,
 .chevronRight {
-    height: 44px;
-    width: 44px;
+    height: 36px;
+    width: 36px;
     line-height: 1;
     word-wrap: normal;
     font-size: 1em;
