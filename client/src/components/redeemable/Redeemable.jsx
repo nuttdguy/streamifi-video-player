@@ -76,7 +76,7 @@ class Redeemable extends Component {
       }
 
     });
-    return menuItems;
+    return menuItems.reverse();
   }
 
   // temporary, requires data for the current user
@@ -174,13 +174,13 @@ class Redeemable extends Component {
   render() {
     const { redeemables, menuItems, walletStats } = this.state;
     const { onShowShop } = this.props;
-    const keys = Object.keys(redeemables).reverse();
+    const keys = Object.keys(redeemables);
 
     return (
       <div className={styles.redeemContainer}>
 
         {/* Displays the menubar  */}
-        {this.renderMenubar(menuItems.reverse())}
+        {this.renderMenubar(menuItems)}
 
         {/* Enable scrolling and display redeemable items */}
         <div className={styles.scroll}>
