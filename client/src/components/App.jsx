@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import VideoPlayer from '../components/player/VideoPlayer.jsx'
-
 import style from './App.css';
+
 
 class App extends Component {
 

@@ -16,7 +16,7 @@ class VideoPlayer extends Component {
         super(props);
         this.state = {
             videojs: null,
-            showMenu: true,
+            showMenu: false,
             showShop: false
         }
     }
@@ -25,13 +25,13 @@ class VideoPlayer extends Component {
     // LIFECYLE 
     /////////////////////////////////////////////
 
-    componentDidMount() { 
+    componentDidMount() {
 
         const videojs = this.initVideoPlayer();
         this.setState({
             videojs: videojs
         })
-     }
+    }
 
 
     /////////////////////////////////////////////
@@ -40,14 +40,21 @@ class VideoPlayer extends Component {
 
 
     initVideoPlayer() {
-        let player =  videojs('player', {
-            src: "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
-            type: "application/x-mpegURL",
-            height: '100%',
-            width: '100%',
-            controls: 'true'
+        let player = videojs('player', {
+            // aspectRatio: '16:9',
+            fluid: true,
+            autoplay: false,
+            html5: {
+                hls: {
+                    overrideNative: true
+                },
+                nativeAudioTracks: false,
+                nativeVideoTracks: false
+            }
         });
 
+
+        console.log('videojs=', player)
         return player;
     }
 
@@ -73,48 +80,58 @@ class VideoPlayer extends Component {
 
 
     render() {
-        const { showMenu, showShop, videojs } = this.state;
+        const { showMenu, showShop } = this.state;
+        // src="https://mixer.com/api/v1/channels/66167360/manifest.m3u8"
 
         return (
 
             <Fragment >
 
-                <video id='player' className={'video-js'}> </video>
+                <div className={containerStyles.positionContainers}>
 
-                {/* <iframe
-                    src="https://www.youtube.com/embed/bTqVqk7FSmY?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
-                    allowFullScreen
-                    allowtransparency="true"
-                    allow="autoplay"
-                    className={styles['plyr__video-wrapper']}
-                ></iframe> */}
+                    <video id='player'
+                        style={{
+                            ['min-height']: '544px',
+                            position: 'relative',
+                            height: '100%',
+                            width: '100%',
+                            top: '0',
+                            left: '0',
+                            ['padding-top']: '0'
+                        }}
+                        controls
+                        className={'video-js'}>
+                        <source
+                            src="https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
+                            type="application/x-mpegURL"></source>
+                    </video>
 
+                    {/* Redeemable menu */}
+                    <div className={containerStyles.redeemableContainer}>
+                        {showMenu ? <Redeemable
+                            onShowShop={this.onShowShop.bind(this)} />
 
-
-                {/* Redeemable menu */}
-                <div className={containerStyles.redeemableContainer}>
-                    {showMenu ? <Redeemable
-                        onShowShop={this.onShowShop.bind(this)} />
-
-                        : null}
-                </div>
-
-
-
-                {/* Video footer  */}
-                <div className={containerStyles.videoFooterContainer}>
-                    <VideoFooterBar
-                        onShowMenu={this.onShowMenu.bind(this)} />
-                </div>
-
+                            : null}
+                    </div>
 
 
-                {/* Ember - redeemable item shop */}
-                <div className={containerStyles.emberContainer}>
-                    {showShop ? <Ember
-                        onShowShop={this.onShowShop.bind(this)} />
 
-                        : null}
+                    {/* Video footer  */}
+                    <div className={containerStyles.videoFooterContainer}>
+                        <VideoFooterBar
+                            onShowMenu={this.onShowMenu.bind(this)} />
+                    </div>
+
+
+
+                    {/* Ember - redeemable item shop */}
+                    <div className={containerStyles.emberContainer}>
+                        {showShop ? <Ember
+                            onShowShop={this.onShowShop.bind(this)} />
+
+                            : null}
+                    </div>
+
                 </div>
 
             </Fragment>
