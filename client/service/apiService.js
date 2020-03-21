@@ -14,6 +14,28 @@ const ApiService = {
         console.log('err=', err);
         return callback(err, null);
       })
+  },
+
+  getStreams: (callback) => {
+
+    axios.get(`${base_url}/streams`)
+    .then(res => {
+      return callback(null, res.data);
+    }).catch(err => {
+      console.log('err=', err);
+      return callback(err, null);
+    })
+  },
+
+  getEmbers: (callback) => {
+
+    axios.get(`${base_url}/embers`)
+    .then(res => {
+      return callback(null, res.data);
+    }).catch(err => {
+      console.log('err=', err);
+      return callback(err, null);
+    })
   }
 
 }

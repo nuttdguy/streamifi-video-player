@@ -1,0 +1,363 @@
+/* flex-direction
+display
+flex-wrap
+justify-content
+align-items
+order
+flex-basis
+border */
+
+
+.redeemContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 354px;
+    height: 100%;
+
+    overflow: hidden;
+    box-sizing: border-box;
+
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px 10px 0 0;
+
+    color: rgba(255,255,255,0.6);
+    background: #212C3E;
+    backdrop-filter: blur(10px);
+
+}
+
+
+/* MENU_BAR  */
+
+
+
+.tabControl {
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 44px;
+    min-height: 44px;
+
+    padding: 0 2px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.tabButtonLeft,
+.tabButtonRight{
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    position: relative;
+    height: 27px;
+    width: 27px;
+    padding: 8px 8px;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.tabButtonLeft:hover,
+.tabButtonRight:hover,
+.tabButtonLeft:focus,
+.tabButtonRight:focus {
+    height: 27px;
+    width: 27px;
+    padding: 8px 8px;
+    background-color: rgba(31, 186, 237, .4);
+    border-radius: 50%;
+}
+
+.tabButtonLeft,
+.tabButtonRight {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.tabButtonLeft:before,
+.tabButtonRight:after {
+    position: absolute;
+    top: 10px;
+
+}
+
+.tabButtonLeft:before {
+    content: "<";
+    right: 14px;
+
+}
+
+.tabButtonRight:before {
+    content: ">";
+    left: 14px;
+
+}
+
+.chevronLeft,
+.chevronRight {
+    height: 36px;
+    width: 36px;
+    line-height: 1;
+    word-wrap: normal;
+    font-size: 1em;
+    display: inline-block;
+}
+
+.tabsContainer {
+    flex: 1;
+    height: 44px;
+    scroll-behavior: smooth;
+}
+
+.tabsContent {
+    display: inline-block;
+    white-space: nowrap;
+    position: relative;
+}
+
+.tabsItem {
+    border-color: #1fbaed;
+    color: #fff;
+    height: 44px;
+    max-width: 100px;
+    border-bottom: 2px solid transparent;
+    margin: 0 12px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+.tabsItem:hover,
+.tabsItem:active {
+    border-bottom: 2px solid #1fbaed;
+    max-width: 100px;
+    cursor: pointer;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* .menubar {
+    position: relative;
+    top: 0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 44px;
+}
+
+.menubar > p {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.menubar button {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding-bottom: 7px;
+    margin: 0 7px;
+    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: .9rem;
+
+    height: 100%;
+    padding: 8px;
+}
+
+.menubar button:active,
+.menubar button:focus,
+.menubar button:hover  {
+    outline: none;
+    box-shadow: none;
+}
+
+.menubar > button {
+    width: 32px;
+    height: 100%;
+    padding: 8px;
+}
+
+.menubar p span {
+    display: flex;
+    flex-direction: row;
+    border-left: 3px groove transparent;
+    border-right: 3px groove transparent;
+}
+
+.menubar p span:active {
+    border-left: 3px groove rgba(86, 179, 241, 0.4);
+    border-right: 3px groove rgba(86, 179, 241, 0.4);
+}
+
+.menubar > button:hover {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(31, 186, 237, .4);
+    border-radius: 50%;
+}
+
+.menubar > p  button {
+    border-bottom: 2px solid transparent;
+}
+
+.menubar > p  button:active,
+.menubar > p  button:focus {
+    border-bottom: 2px solid #1fbaed;
+}
+
+.menubar button:hover {
+    color: #fff
+}
+
+.menubar > button:first-child::before {
+    content: '<';
+}
+
+.menubar > button:last-child::after {
+    content: '>';
+} */
+
+
+/* CAPTION  */
+.caption {
+    min-height: 22px;
+    color: rgba(255,255,255,0.6);
+    font-family: "Segoe UI",sans-serif;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14px;
+    padding: 0 20px;
+}
+
+.caption img {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    margin-right: 0.25em;
+}
+
+.captionUsername {
+    font-weight: bold;
+    color: #fff;
+    margin-left: 0.25em;
+}
+
+/* REDEEMABLES LIST + LIST SCROLL */
+
+.scroll {
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: calc(100% - 100px);
+    overflow-y: auto;
+    scroll-behavior: smooth;
+
+}
+
+.scroll::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+    -webkit-border-radius: 3em;
+    border-radius: 3em;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out
+}
+
+.scroll::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.captionRedeemable {
+    display: flex;
+    justify-content: center;
+    font-size: .9rem;
+    padding: 10px 0;
+}
+
+
+
+ul {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    box-sizing: border-box;
+
+    flex-wrap: wrap;
+}
+
+
+a { 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-decoration: none;
+
+    border: 3px ridge transparent;
+    color: rgba(255,255,255,0.6);
+    font-size: .8rem;
+    padding: 14px 14px 7px 14px;
+}    
+
+a:hover {
+    background-color: rgba(31, 186, 237, .2);
+    border-radius: 7px;
+}
+
+a:active {
+    border: 3px ridge rgba(86, 179, 241, 0.7);
+}
+
+
+li {
+    list-style: none;
+    width: calc(364px / 4);
+}
+
+li > a > img {
+    margin-bottom: 7px;
+    height: 60px;
+    width: 60px;
+}
+
+
+li > a > div > img {
+    width: 16px;
+    height: 16px;
+    padding: 2px;
+}
+
+li > a > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+
+    width: 81px;
+    height: 29px;
+    border: 1px solid rgba(255,255,255,0.2);
+    margin: 0 7.5px;
+    border-radius: 16px;
+}
+

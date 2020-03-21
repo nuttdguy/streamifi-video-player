@@ -1,0 +1,147 @@
+.parentContainer {
+    height: 60px;
+    width: 100%;
+    font-size: 18px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: top;
+}
+
+.order1 { order: 1 }
+.order2 { order: 2 }
+.order3 { order: 3 }
+.order4 { order: 4 }
+.order5 { order: 5 }
+
+.flexGrow132 { flex-basis: 32px; flex-grow: 1;}
+.flexGrow232 { flex-basis: 32px; flex-grow: 2;}
+.flexGrow332 { flex-basis: 32px; flex-grow: 3;}
+.flexGrow432 { flex-basis: 32px; flex-grow: 4;}
+.flexGrow532 { flex-basis: 32px; flex-grow: 5;}
+.flexGrow632 { flex-basis: 32px; flex-grow: 6;}
+.flexGrow732 { flex-basis: 32px; flex-grow: 7;}
+.flexGrow832 { flex-basis: 32px; flex-grow: 8;}
+.flexGrow932 { flex-basis: 32px; flex-grow: 9;}
+.flexGrow1032 { flex-basis: 32px; flex-grow: 10;}
+
+.childContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.backgroundFooter {
+    composes: parentContainer;
+    background-color: #29374a;
+}
+
+/* size of containers */
+.childAvatar { composes: childContainer flexGrow132; }
+.childDescription { composes: childContainer flexGrow1032; }
+.childSkills { 
+    composes: childContainer flexGrow232;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    padding-left: 21px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+ }
+
+
+/* applies avatar styles */
+.childAvatar img {
+    height: 60px;
+    width: 60px;
+}
+
+/* applies title and subheading styles */
+.title, 
+.subtitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    color: #000;
+    padding: 4px 0px;
+    margin: 2px 0px;
+}
+
+.title { font-size: 1em; color: #fff}
+.subtitle { font-size: .8em; color: rgba(255, 255, 255, .6)  }
+
+.viewCount {
+    width: 48px;
+    justify-content: flex-end;
+    display: inline-flex;
+    color: #fff;
+    background-color:#212c3d;
+    border-radius: 4px;
+    margin-left: 14px;
+    padding-right: 8px;
+    line-height: 21px;
+
+    position: relative;
+    top: 12px;
+}
+
+.eye {
+    padding-right: 8px;
+    padding-top: 2px;
+    width: 18px;
+    height: 16px;
+    color: #fff;
+}
+
+.audience {
+    padding-left: 10px;
+    color:#14ab57;
+    font-style: italic;
+}
+
+/* applies styles to skills  */
+
+
+.childSkills:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.childSkills img {
+    height: 31px;
+    min-width: 41px;
+    width: 100%;
+}
+
+.childSkills button {
+    height: 100%;
+    min-height: 60px;
+    width: 100%;
+    text-align: left;
+    padding: 4px 4px;
+
+    font-family: 'Dosis', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+    font-size: .9em;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+
+.childSkills button:active,
+.childSkills button:focus,
+.childSkills button:hover  {
+    outline: none;
+    box-shadow: none;
+}
+
+.childSkills button:after {
+    content: '^';
+    font-size: 1.1em;
+    padding-left: 12px;
+}

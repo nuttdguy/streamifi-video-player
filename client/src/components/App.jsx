@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import VideoPlayer from '../components/player/VideoPlayer.jsx'
-import style from './App.css';
+import css from './App.css';
 
 
 class App extends Component {
@@ -13,8 +13,8 @@ class App extends Component {
     render() {
 
         return (
-            <div className={style.container}>
-                <div className={style.videoPlayerContainer}>
+            <div className={css.container}>
+                <div className={css.videoPlayerContainer}>
                     <VideoPlayer />
                 </div>
             </div>

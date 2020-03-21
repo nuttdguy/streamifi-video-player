@@ -17,9 +17,9 @@ describe('App component', () => {
     })
 
     // examples usage
-    test('should mount in a full DOM', () => {
-        expect(mount(<App />)).toHaveLength(1);
-    })
+    // test('should mount in a full DOM', () => {
+    //     expect(mount(<App />)).toHaveLength(1);
+    // })
 
 })
 

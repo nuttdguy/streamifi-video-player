@@ -1,0 +1,16 @@
+[
+    {
+        "redeemables_id": 1,
+        "img": "../dist/img/r1.gif",
+        "price_category": "Embers",
+        "price_category_url": "../dist/img/embers.jpg",
+        "price": 500
+    },
+    {
+        "redeemables_id": 2,
+        "img": "../dist/img/r2.gif",
+        "price_category": "Sparks",
+        "price_category_url": "../dist/img/sparks.png",
+        "price": 500
+    },
+]

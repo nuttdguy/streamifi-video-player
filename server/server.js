@@ -1,5 +1,5 @@
 const express = require('express');
-const { Streams, Redeemables } = require('../model/index.js');
+const { Streams, Redeemables, Embers } = require('../model/index.js');
 
 var app = express();
 
@@ -36,6 +36,18 @@ app.get('/redeemables', (req, res, next) => {
     })
 })
 
+
+app.get('/embers', (req, res, next) => {
+    
+    Embers.getAll((err, data) => {
+        if (err) {
+            console.log('Error, ', err);
+            return res.status(404).send();
+        }
+
+        return res.status(200).send(data);
+    })
+})
 
 
 const port = process.env.port || 3005;
