@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import videojs from 'video.js';
-import Player from './Player.jsx'
+import Player from '../Player.jsx'
 
-import RedeemableList from './redeemableList/RedeemableList.jsx'
-import VideoFooterBar from './videoFooterBar/VideoFooterBar.jsx'
-import ApiService from '../../../service/apiService.js'
+import RedeemableList from '../redeemableList/RedeemableList.jsx'
+import VideoFooterBar from '../videoFooterBar/VideoFooterBar.jsx'
+import ApiService from '../../../../service/apiService.js'
 
-import cssContainer from '../App.css';
+import cssContainer from '../../App.css';
 
 
 

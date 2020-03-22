@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import VideoPlayer from '../components/player/VideoPlayer.jsx'
+import VideoPlayer from './player/video/VideoPlayer.jsx'
 import css from './App.css';
 
 

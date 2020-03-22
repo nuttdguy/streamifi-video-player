@@ -205,10 +205,9 @@ class RedeemableList extends Component {
   render() {
     const { redeemables, menuItems, walletStatus, showEmberShop} = this.state;
     const { username } = this.props;
-
-    // const display = showEmberShop ? 'flex' : 'none';
     const keys = Object.keys(redeemables);
 
+    
     return (
       <div>
         <div className={css.redeemContainer}>
