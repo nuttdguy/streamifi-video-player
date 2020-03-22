@@ -36,6 +36,16 @@ const ApiService = {
       console.log('err=', err);
       return callback(err, null);
     })
+  },
+
+  getWallet: (id, callback) => {
+    axios.get(`${base_url}/wallet/`+id)
+    .then(res => {
+      return callback(null, res.data);
+    }).catch(err => {
+      console.log('err=', err);
+      return callback(err, null);
+    })
   }
 
 }

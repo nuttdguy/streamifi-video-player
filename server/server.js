@@ -1,5 +1,5 @@
 const express = require('express');
-const { Streams, Redeemables, Embers } = require('../model/index.js');
+const { Streams, Redeemables, Embers, Wallet } = require('../model/index.js');
 
 var app = express();
 
@@ -21,7 +21,6 @@ app.get('/streams', (req, res, next) => {
 
         return res.status(200).send(data);
     })
-
 })
 
 app.get('/redeemables', (req, res, next) => {
@@ -48,6 +47,21 @@ app.get('/embers', (req, res, next) => {
         return res.status(200).send(data);
     })
 })
+
+
+app.get('/wallet/:id', (req, res, next) => {
+    const id = req.params.id;
+    
+    Wallet.getOne(id, (err, data) => {
+        if (err) {
+            console.log('Error, ', err);
+            return res.status(404).send();
+        }
+
+        return res.status(200).send(data);
+    })
+})
+
 
 
 const port = process.env.port || 3005;

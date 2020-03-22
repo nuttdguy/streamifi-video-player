@@ -52,12 +52,3 @@ body {
     bottom: -60px;
     width: 100%;
 }
-
-.emberContainer {
-    position: absolute;
-    top: 0px;
-    left: calc(76vw - calc(100vw - 76vw));
-    display: flex;
-    justify-content: center;
-    z-index: 100;
-}

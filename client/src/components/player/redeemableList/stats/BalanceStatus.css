@@ -1,0 +1,63 @@
+
+.balanceContainer {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.balance {
+    min-width: 32px;
+    justify-content: flex-end;
+    display: flex;
+    padding-right: 4px;
+}
+
+.sparkContainer, .emberContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 8px;
+    padding: 4px;
+
+    cursor: default;
+    border-radius: 4px;
+    background-color: rgba(31, 186, 237, .2);
+    height: 28px;
+    min-width: 91px;
+
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 19px;
+}
+
+
+
+.sparkContainer img,
+.emberContainerimg {
+    width: 1.4em;
+    height: 1.4em;
+    margin-right: 0.25em;
+}
+
+
+.emberContainer button {
+    width: 1em;
+    height: 1em;
+    font-size: 1em;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    margin-left: 4px;
+    height: 28px;
+    width: 28px;
+    border-radius: 4px;
+    background-color: #dd208a;
+    border: 0;
+}
+
+.emberContainer span {
+    color: #fff;
+}

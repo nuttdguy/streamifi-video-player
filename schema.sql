@@ -18,7 +18,7 @@ CREATE TABLE Streams (
 
 
 CREATE TABLE Redeemables (
-    redeemables_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    redeemable_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     img VARCHAR(64) NOT NULL,
     price INT NOT NULL,
     price_category VARCHAR(64),
@@ -35,4 +35,15 @@ CREATE TABLE Embers (
     offer_img_url VARCHAR(255) NOT NULL,
     promotion VARCHAR(40) NOT NULL,
     cost VARCHAR(20) NOT NULL
-)
+);
+
+
+CREATE TABLE Wallets (
+    wallet_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    sparks_balance INT NOT NULL,
+    sparks_img_src VARCHAR(255) NOT NULL,
+    embers_balance INT NOT NULL,
+    embers_img_src VARCHAR(255) NOT NULL,
+    level INT NOT NULL
+);
+

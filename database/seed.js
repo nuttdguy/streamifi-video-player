@@ -107,6 +107,36 @@ const createEmbers = function() {
 }
 
 
+const createWallets = function() {
+    const wallets = [];
+
+    const generateBalance = function () {
+        return Math.floor((Math.random() * 100) * 100)
+    }
+
+
+    const generateLevel = function () {
+        return Math.floor(Math.random() * 100);
+    }
+    
+    for (let i = 0; i <= 100; i++) { 
+        const sparkBalance = generateBalance();
+        const emberBalance = generateBalance();
+        const level = generateLevel();
+
+        const wallet = {
+            level: level,
+            sparks_balance: sparkBalance,
+            sparks_img_src: 'https://streamifi.s3-us-west-1.amazonaws.com/img/spark-coin.svg',
+            embers_balance: emberBalance,
+            embers_img_src: 'https://streamifi.s3-us-west-1.amazonaws.com/img/ember.png'
+        }
+        wallets.push(wallet);
+    }
+    return wallets;
+}
+
+
 const createTable = function() {
 
     db.beginTransaction((error) => {
@@ -154,7 +184,9 @@ const insertRecords = function(tableName, data) {
 var arrayOfStreamObjects = createStreams();
 var arrayOfredeemableObjects = createRedeemables();
 var arrayOfEmberObjects = createEmbers();
+var arrayOfWalletObjects = createWallets();
 insertRecords('Streams', arrayOfStreamObjects);
 insertRecords('Redeemables', arrayOfredeemableObjects);
 insertRecords('Embers', arrayOfEmberObjects);
+insertRecords('Wallets', arrayOfWalletObjects);
 

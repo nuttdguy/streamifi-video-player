@@ -2,9 +2,8 @@ import React, { Component, Fragment } from 'react';
 import videojs from 'video.js';
 import Player from './Player.jsx'
 
-import RedeemableList from '../redeemableList/RedeemableList.jsx'
-import VideoFooterBar from '../videoFooterBar/VideoFooterBar.jsx'
-import EmberList from '../redeemableList/emberList/EmberList.jsx'
+import RedeemableList from './redeemableList/RedeemableList.jsx'
+import VideoFooterBar from './videoFooterBar/VideoFooterBar.jsx'
 import ApiService from '../../../service/apiService.js'
 
 import cssContainer from '../App.css';
@@ -16,10 +15,9 @@ class VideoPlayer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            stream: {title: '', viewerCount: '', audience: '', subheading: '', name: ''},
+            showMenu: 'none',
             videojs: null,
-            showMenu: false,
-            showShop: false,
+            stream: { title: '', viewerCount: '', audience: '', subheading: '', name: '' },
             videoSRC: 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8',
             videoType: 'application/x-mpegURL'
         }
@@ -44,14 +42,14 @@ class VideoPlayer extends Component {
 
         ApiService.getStreams((error, streams) => {
             if (error) {
-              return console.log('Error=', error);
+                return console.log('Error=', error);
             }
 
             this.setState({
                 videojs: videojs,
-                stream: streams[ (Math.floor(Math.random() * streams.length) )]
+                stream: streams[(Math.floor(Math.random() * streams.length))]
             })
-          });
+        });
     }
 
     initializePlayer() {
@@ -59,6 +57,7 @@ class VideoPlayer extends Component {
             fluid: true,
             autoplay: false,
             preload: 'auto',
+            bigPlayButton: false,
             html5: {
                 hls: {
                     overrideNative: true
@@ -78,14 +77,11 @@ class VideoPlayer extends Component {
     // HANDLERS
     /////////////////////////////////////////////
 
+
     onShowMenu() {
-        this.setState({ showMenu: !this.state.showMenu });
+        const showMenu = this.state.showMenu === 'none' ? 'flex' : 'none';
+        this.setState({showMenu: showMenu});
     }
-
-    onShowShop() {
-        this.setState({ showShop: !this.state.showShop })
-    }
-
 
 
     /////////////////////////////////////////////
@@ -93,9 +89,8 @@ class VideoPlayer extends Component {
     /////////////////////////////////////////////
 
 
-
     render() {
-        const { showMenu, showShop, stream, videoSRC, videoType } = this.state;
+        const { showMenu, stream, videoSRC, videoType } = this.state;
 
 
         return (
@@ -111,11 +106,9 @@ class VideoPlayer extends Component {
 
 
                     {/* Redeemable menu */}
-                    <div className={cssContainer.redeemableContainer}>
-                        {showMenu ? <RedeemableList
-                            onShowShop={this.onShowShop.bind(this)}
-                            username={stream.name}/>  : null}
-
+                    <div style={{display: showMenu}} 
+                        className={cssContainer.redeemableContainer}>
+                        {<RedeemableList username={stream.name} />}
                     </div>
 
 
@@ -132,14 +125,6 @@ class VideoPlayer extends Component {
 
                     </div>
 
-
-
-                    {/* Ember - redeemable item shop */}
-                    <div className={cssContainer.emberContainer}>
-                        {showShop ? <EmberList
-                            onShowShop={this.onShowShop.bind(this)} />  : null}
-
-                    </div>
 
                 </div>
 
