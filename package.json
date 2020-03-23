@@ -8,7 +8,9 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
+    "test:watch": "jest --watchAll --verbose",
+    "test:coverage": "jest --verbose --coverage",
     "build": "webpack -d -w",
     "start:dev": "nodemon server/server.js",
     "seed:db": "node database/seed.js "

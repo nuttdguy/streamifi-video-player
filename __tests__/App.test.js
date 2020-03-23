@@ -4,7 +4,7 @@ import App from '../client/src/components/App.jsx';
 import { shallow, mount, render } from 'enzyme';
 
 
-describe('App component', () => {
+describe.skip('App component', () => {
 
     test('should render the <App /> component', () => {
         const wrapper = shallow( <App /> );

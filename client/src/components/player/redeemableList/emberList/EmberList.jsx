@@ -61,7 +61,7 @@ class EmberList extends Component {
 
                     <EmberFooter
                         heading={'Your Ember Balance'}
-                        emberImgSrc={"../dist/img/ember24.png"}
+                        emberImgSrc={'https://streamifi.s3-us-west-1.amazonaws.com/img/ember.png'}
                         alt={'ember coin'}
                         balance={emberBalance} />
 

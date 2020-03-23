@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import Stats from './stats/Stats.jsx';
 import Redeemable from './redeemable/Redeemable.jsx';
 import EmberList from './emberList/EmberList.jsx'
@@ -64,10 +64,10 @@ class RedeemableList extends Component {
               hasLoaded: true
             });
           }
-        }); // END OF API GET WALLET
+        });
       }
 
-    }) // END OF API REDEEABLE
+    })
 
   }
 
@@ -131,7 +131,7 @@ class RedeemableList extends Component {
     const balance = wallet[name] - debitAmount < 0 ? 0 : wallet[name] - debitAmount;
 
     wallet[name] = balance;
-    this.setState({ ...this.state, walletStatus: wallet })
+    this.setState({walletStatus: wallet })
   }
 
 

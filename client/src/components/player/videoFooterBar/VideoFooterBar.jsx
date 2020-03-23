@@ -2,7 +2,7 @@ import React from 'react';
 import css from './VideoFooterBar.css';
 
 
-const VideoFooterBar = ({ onShowMenu, stream, btnText, avatarImgSrc, skillsImgSrc, eyeImgSrc }) => (
+const VideoFooterBar = ({ onShowRedeemableMenu, stream, btnText, avatarImgSrc, skillsImgSrc, eyeImgSrc }) => (
 
     <div className={css.backgroundFooter} >
 
@@ -18,7 +18,7 @@ const VideoFooterBar = ({ onShowMenu, stream, btnText, avatarImgSrc, skillsImgSr
         <SkillsAction
             skillsImgSrc={skillsImgSrc}
             btnText={btnText}
-            onShowMenu={onShowMenu} />
+            onShowRedeemableMenu={onShowRedeemableMenu} />
 
     </div>
 )
@@ -40,13 +40,13 @@ const FooterContent = ({ title, viewers_total, subheading, audience, eyeImgSrc})
     </div>
 )
 
-const SkillsAction = ({ skillsImgSrc, btnText, onShowMenu }) => (
+const SkillsAction = ({ skillsImgSrc, btnText, onShowRedeemableMenu }) => (
     <div className={css.childSkills}>
         <div className={css.childSkillsImg}>
             <img src={skillsImgSrc} />
         </div>
         <div className={css.flexGrow132}>
-            <button onClick={onShowMenu}>{btnText}</button>
+            <button onClick={onShowRedeemableMenu}>{btnText}</button>
         </div>
     </div>
 )

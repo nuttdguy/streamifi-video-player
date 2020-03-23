@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import videojs from 'video.js';
-import Player from '../Player.jsx'
+import Player from './Player.jsx'
 
 import RedeemableList from '../redeemableList/RedeemableList.jsx'
 import VideoFooterBar from '../videoFooterBar/VideoFooterBar.jsx'
@@ -15,11 +15,9 @@ class VideoPlayer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showMenu: 'none',
+            showRedeemableMenu: 'none',
             videojs: null,
-            stream: { title: '', viewerCount: '', audience: '', subheading: '', name: '' },
-            videoSRC: 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8',
-            videoType: 'application/x-mpegURL'
+            stream: { title: '', viewerCount: '', audience: '', subheading: '', name: '', url: '' },
         }
     }
 
@@ -31,6 +29,13 @@ class VideoPlayer extends Component {
         this.loadInitialState();
     }
 
+    // destroy player on unmount
+    componentWillUnmount() {
+        if (this.state.videojs) {
+            this.state.videojs.dispose()
+        }
+    }
+
 
     /////////////////////////////////////////////
     // HELPER 
@@ -38,17 +43,18 @@ class VideoPlayer extends Component {
 
     loadInitialState() {
 
-        const videojs = this.initializePlayer(); // initialize the player
-
         ApiService.getStreams((error, streams) => {
             if (error) {
                 return console.log('Error=', error);
             }
 
-            this.setState({
-                videojs: videojs,
-                stream: streams[(Math.floor(Math.random() * streams.length))]
-            })
+            const randomStreamId = Math.floor(Math.random() * 100); // temporary selection of random stream
+            // console.log('streams=', streams);
+            const stream = streams[randomStreamId];
+            const videojs = this.initializePlayer(); // initialize the player
+
+            this.setState({ videojs: videojs, stream: stream })
+
         });
     }
 
@@ -58,6 +64,12 @@ class VideoPlayer extends Component {
             autoplay: false,
             preload: 'auto',
             bigPlayButton: false,
+            smoothQualityChange: true,
+            sources: [
+                {
+                    src: 'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8',
+                    type: 'application/x-mpegURL'
+                }],
             html5: {
                 hls: {
                     overrideNative: true
@@ -67,6 +79,7 @@ class VideoPlayer extends Component {
             },
             handleManifestRedirects: true,
             controls: true,
+            withCredenitals: true
         });
 
         return player;
@@ -78,9 +91,9 @@ class VideoPlayer extends Component {
     /////////////////////////////////////////////
 
 
-    onShowMenu() {
-        const showMenu = this.state.showMenu === 'none' ? 'flex' : 'none';
-        this.setState({showMenu: showMenu});
+    onShowRedeemableMenu() {
+        const showRedeemableMenu = this.state.showRedeemableMenu === 'none' ? 'flex' : 'none';
+        this.setState({ showRedeemableMenu: showRedeemableMenu });
     }
 
 
@@ -90,7 +103,7 @@ class VideoPlayer extends Component {
 
 
     render() {
-        const { showMenu, stream, videoSRC, videoType } = this.state;
+        const { showRedeemableMenu, stream } = this.state;
 
 
         return (
@@ -102,11 +115,11 @@ class VideoPlayer extends Component {
 
 
                     {/* Video player */}
-                    <Player videoSRC={videoSRC} videoType={videoType} />
+                    <Player playerId='player' />
 
 
                     {/* Redeemable menu */}
-                    <div style={{display: showMenu}} 
+                    <div style={{ display: showRedeemableMenu }}
                         className={cssContainer.redeemableContainer}>
                         {<RedeemableList username={stream.name} />}
                     </div>
@@ -121,7 +134,7 @@ class VideoPlayer extends Component {
                             eyeImgSrc={"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAABcklEQVRIie2UwUpCURCG54Y7JSva5UVI6NKqNxBp1yO0rh6iRb2Lq1AEN6EgBJJtXCTUwo1JL2CCSrX82vzR6XhTg8iNAwcu8/0z55yZe8ZsZcu2YBYEtszs2MyOzOzAzLaFBmb2YGZ1M7sKgmD4q12BBHAOTJhvE2kTiybPAG0nQQM4ASIgqRXJ13B0bSAzL3kW6CvgCcgvcKA80FNMH8j+JEwBXQlvgQ2HhUAFGGtVgcjhaaCp2C6QitugKEHHFSj5S0zth0DoHbAjVvSTFwTegJzHKmLXwI56VJOv7GlzygFQcEFLzsuYm43FMo4vlG8Uo78Qa5mZrfl8qnazLU7v5/xWoldg12NVsZrKEwJ1+Uqedg94nyqR4GeT74Gk44/UUN8GXtnWgcfYJkvg/qZNIO2wECgDI62Sl3wTuFNs/G8qYZavh9ZjsYd2CDwr5ueH5gTEjYpTYF+3TOn7DLhxdPNHhbPJnw275Yzrlf2rfQDAlLqI49Y60wAAAABJRU5ErkJggg=="}
                             btnText={'skills'}
                             stream={stream}
-                            onShowMenu={this.onShowMenu.bind(this)} />
+                            onShowRedeemableMenu={this.onShowRedeemableMenu.bind(this)} />
 
                     </div>
 

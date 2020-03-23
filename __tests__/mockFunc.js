@@ -1,4 +1,4 @@
-describe('test', () => {
+describe.skip('test', () => {
 
     test('shoud run test', () => {
         function forEach(items, callback) {
@@ -25,8 +25,6 @@ describe('test', () => {
 
         // The return value of the first call to the function was 43
         expect(mockCallback.mock.results[1].value).toBe(43);
-
-        console.log(mockCallback.mock);
 
     })
 
