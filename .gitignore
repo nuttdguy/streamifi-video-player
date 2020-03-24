@@ -3,7 +3,6 @@ node_modules
 coverage/*
 coverage
 database/db.config.js
-database/seed-data/*
 /client/config/*
 
 fake-layout

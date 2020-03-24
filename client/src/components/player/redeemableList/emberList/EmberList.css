@@ -1,8 +1,4 @@
 .dialog {
-    /* display: flex; */
-    /* flex-direction: column; */
-    
-    /* height: 860px; */
     width: 800px;
     max-height: 775px;
     min-height: 600px;
@@ -11,7 +7,7 @@
     border-radius: 10px;
     background-color: #212c3d;
     box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.3);
-    z-index: 54;
+    z-index: 1000;
 }
 
 .contentContainer {

@@ -7,16 +7,14 @@ class App extends Component {
 
     constructor(props) {
         super(props)
-        this.state = { }
+        this.state = {}
     }
 
     render() {
 
         return (
             <div className={css.container}>
-                <div className={css.videoPlayerContainer}>
-                    <VideoPlayer />
-                </div>
+                <VideoPlayer />
             </div>
         )
     }

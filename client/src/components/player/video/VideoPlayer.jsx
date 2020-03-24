@@ -1,10 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import videojs from 'video.js';
-import Player from './Player.jsx'
 
-import RedeemableList from '../redeemableList/RedeemableList.jsx'
-import VideoFooterBar from '../videoFooterBar/VideoFooterBar.jsx'
-import ApiService from '../../../../service/apiService.js'
+import RedeemableList from '../redeemableList/RedeemableList.jsx';
+import VideoFooterBar from '../videoFooterBar/VideoFooterBar.jsx';
+import ApiService from '../../../../service/apiService.js';
 
 import cssContainer from '../../App.css';
 
@@ -49,7 +48,6 @@ class VideoPlayer extends Component {
             }
 
             const randomStreamId = Math.floor(Math.random() * 100); // temporary selection of random stream
-            // console.log('streams=', streams);
             const stream = streams[randomStreamId];
             const videojs = this.initializePlayer(); // initialize the player
 
@@ -60,7 +58,7 @@ class VideoPlayer extends Component {
 
     initializePlayer() {
         let player = videojs('player', {
-            fluid: true,
+            fluid: false,
             autoplay: false,
             preload: 'auto',
             bigPlayButton: false,
@@ -81,6 +79,8 @@ class VideoPlayer extends Component {
             controls: true,
             withCredenitals: true
         });
+        // console.log(player)
+
 
         return player;
     }
@@ -104,26 +104,31 @@ class VideoPlayer extends Component {
 
     render() {
         const { showRedeemableMenu, stream } = this.state;
+        const cssInline = {
+            height: '544px',
+            position: 'absolute',
+            width: '100%',
+            top: '0',
+            left: '0',
+            paddingTop: '0'
+        }
 
 
         return (
 
-            <Fragment >
-
+            <div className={cssContainer.positionContainers}>
                 {/* utilize this container to set as base reference for positioning */}
-                <div className={cssContainer.positionContainers}>
 
 
-                    {/* Video player */}
-                    <Player playerId='player' />
+                <div data-vjs-player >
 
+                    <video style={cssInline} className={'video-js vjs-default-skin'} id='player'> </video>
 
                     {/* Redeemable menu */}
                     <div style={{ display: showRedeemableMenu }}
                         className={cssContainer.redeemableContainer}>
                         {<RedeemableList username={stream.name} />}
                     </div>
-
 
 
                     {/* Video footer  */}
@@ -141,7 +146,7 @@ class VideoPlayer extends Component {
 
                 </div>
 
-            </Fragment>
+            </div>
         )
     }
 }

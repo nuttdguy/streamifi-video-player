@@ -32,22 +32,15 @@ border */
 
 
 
-.tabControl {
-    position: relative;
-    top: 0;
-    width: 100%;
-    height: 44px;
-    min-height: 44px;
-
+.redeemContainer .tabControl {
     padding: 0 2px 10px;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    box-sizing: border-box;
+    height: 48px;
 }
 
-.tabButtonLeft,
-.tabButtonRight{
+.redeemContainer .tabButtonLeft,
+.redeemContainer .tabButtonRight{
     display: flex;
     align-items: top;
     justify-content: center;
@@ -60,10 +53,10 @@ border */
     border-radius: 50%;
 }
 
-.tabButtonLeft:hover,
-.tabButtonRight:hover,
-.tabButtonLeft:focus,
-.tabButtonRight:focus {
+.redeemContainer .tabButtonLeft:hover, 
+.redeemContainer .tabButtonRight:hover,
+.redeemContainer .tabButtonLeft:focus,
+.redeemContainer .tabButtonRight:focus {
     height: 27px;
     width: 27px;
     padding: 8px 8px;
@@ -71,35 +64,35 @@ border */
     border-radius: 50%;
 }
 
-.tabButtonLeft,
-.tabButtonRight {
+.redeemContainer .tabButtonLeft,
+.redeemContainer .tabButtonRight {
     font-size: 18px;
     font-weight: 600;
     color: #fff;
     text-transform: uppercase;
 }
 
-.tabButtonLeft:before,
-.tabButtonRight:after {
+.redeemContainer .tabButtonLeft:before,
+.redeemContainer .tabButtonRight:after {
     position: absolute;
     top: 10px;
 
 }
 
-.tabButtonLeft:before {
+.redeemContainer .tabButtonLeft:before {
     content: "<";
     right: 14px;
 
 }
 
-.tabButtonRight:before {
+.redeemContainer .tabButtonRight:before {
     content: ">";
     left: 14px;
 
 }
 
-.chevronLeft,
-.chevronRight {
+.redeemContainer .chevronLeft,
+.redeemContainer .chevronRight {
     height: 36px;
     width: 36px;
     line-height: 1;
@@ -110,17 +103,14 @@ border */
 
 .tabsContainer {
     flex: 1;
-    height: 44px;
-    scroll-behavior: smooth;
+    box-sizing: content-box;
 }
 
 .tabsContent {
-    display: inline-block;
-    white-space: nowrap;
-    position: relative;
+    box-sizing: content-box;
 }
 
-.tabsItem {
+.tabsContent .tabsItem {
     border-color: #1fbaed;
     color: #fff;
     height: 44px;
@@ -137,8 +127,8 @@ border */
     border: none;
 }
 
-.tabsItem:hover,
-.tabsItem:active {
+.tabsContent .tabsItem:hover,
+.tabsContent .tabsItem:active {
     border-bottom: 2px solid #1fbaed;
     max-width: 100px;
     cursor: pointer;
@@ -280,6 +270,7 @@ li > a > div {
 
 .emberContainer {
     position: fixed;
+    box-sizing: border-box;
     top: 90px;
     min-height: 720px;
     right: calc(50% - (calc(800px / 2)));

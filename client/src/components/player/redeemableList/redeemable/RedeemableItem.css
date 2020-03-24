@@ -15,14 +15,14 @@
     background-color: #29374a;
 }
 
-.gridImage {
+.gridTile .gridImage {
     width: 60px;
     height: 60px;
     margin: 12px;
     transition: transform 2ms;
 }
 
-.gridButton {
+.gridTile .gridButton {
     display: flex;
     width: 81px;
     height: 29px;
@@ -36,13 +36,13 @@
     color: #fff;
 }
 
-.currencyCoin {
+.gridTile .currencyCoin {
     height: 1em;
     width: auto;
     margin-right: 0.25em;
 }
 
-.gridTileCost {
+.gridTile .gridTileCost {
     display: flex;
     align-items: center;
     height: 21px;
