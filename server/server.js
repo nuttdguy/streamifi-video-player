@@ -1,9 +1,9 @@
 const express = require('express');
+const path = require('path');
 const { Streams, Redeemables, Embers, Wallet } = require('../model/index.js');
 
 var app = express();
-
-app.use(express.static(__dirname + './dist'));
+app.use(express.static('dist'));
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
