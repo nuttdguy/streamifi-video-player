@@ -12,6 +12,7 @@ class Streams {
               console.log('Error - could not get redeemables ', error)
               return callback(error);
             }
+
             return callback(null, streams);
           });       
     }

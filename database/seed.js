@@ -1,49 +1,13 @@
-const db = require('./db-connection.js');
+const mysql = require('mysql');
+const config = require('./db.config.js');
+const QUERY = require('./queries.js');
 const faker = require('faker');
 const channeldata = require('./seed-data/channel-data.json');
 const emberdata = require('./seed-data/ember-data.json');
 
-const createTableSQL = `DROP DATABASE IF EXISTS streamifi;
-
-CREATE DATABASE streamifi;
-
-USE streamifi;
-
-CREATE TABLE Streams (
-    stream_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    token TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-    title TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-    audience VARCHAR(40) NOT NULL,
-    subheading TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-    viewers_total INT NOT NULL,
-    viewers_current INT NOT NULL,
-    url TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-    created_at DATE NOT NULL
-);
-
-
-CREATE TABLE Redeemables (
-    redeemables_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    img VARCHAR(64) NOT NULL,
-    price INT NOT NULL,
-    price_category VARCHAR(64),
-    price_category_url VARCHAR(64) NOT NULL
-);
-
-
-CREATE TABLE Embers (
-    ember_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    label VARCHAR(144) NOT NULL,
-    alt VARCHAR(144) NOT NULL,
-    offer_title VARCHAR(40) NOT NULL,
-    amount VARCHAR(20) NOT NULL,
-    offer_img_url VARCHAR(255) NOT NULL,
-    promotion VARCHAR(40) NOT NULL,
-    cost VARCHAR(20) NOT NULL
-)`
 
 // create stream objects
-const createStreams = function() {
+const createStreams = function () {
     const streams = [];
 
     channeldata.forEach(obj => {
@@ -65,7 +29,7 @@ const createStreams = function() {
 }
 
 // create redeemable objects
-const createRedeemables = function() {
+const createRedeemables = function () {
 
     const redeemables = [];
     let counter = 0;
@@ -75,12 +39,12 @@ const createRedeemables = function() {
         counter = counter === 50 ? 0 : counter + 1;
 
         // redeemable.img = '../dist/img/r'+counter+'.gif';
-        redeemable.img = 'https://streamifi.s3-us-west-1.amazonaws.com/img/r'+counter+'.gif';
+        redeemable.img = 'https://streamifi.s3-us-west-1.amazonaws.com/img/r' + counter + '.gif';
         redeemable.price = faker.commerce.price();
         redeemable.price_category = i % 2 === 0 ? 'Embers' : 'Sparks';
         redeemable.price_category_url = redeemable.price_category === 'Embers' ?
-        'https://streamifi.s3-us-west-1.amazonaws.com/img/ember.png' : 
-        'https://streamifi.s3-us-west-1.amazonaws.com/img/spark-coin.svg';
+            'https://streamifi.s3-us-west-1.amazonaws.com/img/ember.png' :
+            'https://streamifi.s3-us-west-1.amazonaws.com/img/spark-coin.svg';
 
         redeemables.push(redeemable);
 
@@ -89,7 +53,7 @@ const createRedeemables = function() {
 }
 
 
-const createEmbers = function() {
+const createEmbers = function () {
     const embers = [];
     emberdata.forEach(obj => {
         const ember = {
@@ -107,7 +71,7 @@ const createEmbers = function() {
 }
 
 
-const createWallets = function() {
+const createWallets = function () {
     const wallets = [];
 
     const generateBalance = function () {
@@ -118,8 +82,8 @@ const createWallets = function() {
     const generateLevel = function () {
         return Math.floor(Math.random() * 100);
     }
-    
-    for (let i = 0; i <= 100; i++) { 
+
+    for (let i = 0; i <= 100; i++) {
         const sparkBalance = generateBalance();
         const emberBalance = generateBalance();
         const level = generateLevel();
@@ -137,56 +101,116 @@ const createWallets = function() {
 }
 
 
-const createTable = function() {
+const createTable = function (callback) {
 
-    db.beginTransaction((error) => {
-        if (error ) {
-            return console.log("error", error)
+    const db = mysql.createConnection({
+        user: config.user,
+        password: config.password,
+        charset: 'utf8mb4'
+    });
+
+    db.connect((err) => {
+        if (err) {
+            return console.error('error: ' + err.message);
         }
 
-        db.query(createTableSQL, (err, result) => {
-            if (err) {
-                console.log('create table error', err);
-                return;
-            }
+        db.query(QUERY.DROP_STREAMIFI, (err) => {
+            if (err) { return console.log('create db error', err); }
+            db.query(QUERY.CREATE_STREAMIFI, (err) => {
+                if (err) { return console.log('create db error', err); }
+                db.query(QUERY.USE_STREAMIFI, (err) => {
+                    if (err) { return console.log('create db error', err); }
 
-            db.commit(err => {
-                if (err) {
-                    console.log('commit error', err);
-                    return;
-                }
+                    db.query(QUERY.CREATE_STREAMS, (err) => {
+                        if (err) { return console.log('Error creating Streams table', err); }
+                        console.log('Done creating Streams Table');
 
-                console.log('Create database');
-            })
-        })
+                        db.query(QUERY.CREATE_REDEEMABLE, (err) => {
+                            if (err) { return console.log('Error creating Redeemable table', err); }
+                            console.log('Done creating Redeemable Table');
+
+                            db.query(QUERY.CREATE_EMBERS, (err) => {
+                                if (err) { return console.log('Error creating Embers table', err); }
+                                console.log('Done creating Embers Table');
+
+                                db.query(QUERY.CREATE_WALLETS, (err, result) => {
+                                    if (err) { return console.log('Error creating Wallets table', err); }
+                                    console.log('Done creating Wallets Table');
+
+                                    db.end(err => {
+                                        console.log('Done creating database => closing connection ');
+                                        return callback(err);
+                                    })
+
+                                })
+                            })
+                        })
+                    })
+                });
+            });
+        });
     })
+
 }
 
-// insert seed data
-const insertRecords = function(tableName, data) {
+
+const addSeedRecords = function (callback) {
 
 
+    const db = mysql.createConnection({
+        user: config.user,
+        password: config.password,
+        database: config.database,
+        charset: 'utf8mb4'
+    }); 
 
-    for (let i = 0; i < data.length; i++) {
-        db.query(`INSERT INTO ${tableName} SET ?`, data[i], (err, result, fields) => {
+    // insert seed data
+    const insertRecords = function (tableName, data) {
+
+        for (let i = 0; i < data.length; i++) {
+            db.query(`INSERT INTO ${tableName} SET ?`, data[i], (err, result, fields) => {
+                if (err) { return console.log('error=', err); }
+            })
+        }
+        console.log('Done inserting records=', data.length, 'into ', tableName);
+
+    }
+
+    const seedRecordsintoTables = function(callback) {
+
+        db.connect((err) => {
             if (err) {
-                console.log('error=', err);
-                return err;
+                return console.error('error: ' + err);
             }
+
+            // create objects
+            var arrayOfStreamObjects = createStreams();
+            var arrayOfredeemableObjects = createRedeemables();
+            var arrayOfEmberObjects = createEmbers();
+            var arrayOfWalletObjects = createWallets();
+            insertRecords('Streams', arrayOfStreamObjects);
+            insertRecords('Redeemables', arrayOfredeemableObjects);
+            insertRecords('Embers', arrayOfEmberObjects);
+            insertRecords('Wallets', arrayOfWalletObjects);
+            callback(null, 'Done inserting records into tables');
         })
     }
 
-    console.log('Done inserting records=', data.length, 'into ', tableName);
 
-}
+    seedRecordsintoTables((err, message) => {
+        db.end(err => {
+            return callback(err, message);
+        })
+    })
 
-// create objects 
-var arrayOfStreamObjects = createStreams();
-var arrayOfredeemableObjects = createRedeemables();
-var arrayOfEmberObjects = createEmbers();
-var arrayOfWalletObjects = createWallets();
-insertRecords('Streams', arrayOfStreamObjects);
-insertRecords('Redeemables', arrayOfredeemableObjects);
-insertRecords('Embers', arrayOfEmberObjects);
-insertRecords('Wallets', arrayOfWalletObjects);
+};
 
+createTable((err) => {
+    if (err) { return console.error('error: ' + err); }
+
+    addSeedRecords((err, message) => {
+        if (err) { return console.error('error: ' + err); }
+        console.log(`${message} and closing database connection`);
+        process.exit(0);
+    });
+})
