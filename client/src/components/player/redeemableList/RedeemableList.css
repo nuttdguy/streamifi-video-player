@@ -41,9 +41,6 @@ border */
 
 .redeemContainer .tabButtonLeft,
 .redeemContainer .tabButtonRight{
-    display: flex;
-    align-items: top;
-    justify-content: center;
     position: relative;
     height: 27px;
     width: 27px;
@@ -51,6 +48,7 @@ border */
     cursor: pointer;
     background-color: transparent;
     border-radius: 50%;
+    box-sizing: border-box;
 }
 
 .redeemContainer .tabButtonLeft:hover, 
@@ -70,13 +68,6 @@ border */
     font-weight: 600;
     color: #fff;
     text-transform: uppercase;
-}
-
-.redeemContainer .tabButtonLeft:before,
-.redeemContainer .tabButtonRight:after {
-    position: absolute;
-    top: 10px;
-
 }
 
 .redeemContainer .tabButtonLeft:before {

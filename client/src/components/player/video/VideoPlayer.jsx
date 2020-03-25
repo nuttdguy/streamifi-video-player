@@ -16,7 +16,7 @@ class VideoPlayer extends Component {
         this.state = {
             showRedeemableMenu: 'none',
             videojs: null,
-            stream: { title: '', viewerCount: '', audience: '', subheading: '', name: '', url: '' },
+            stream: { title: '', viewerCount: '', audience: '', subheading: '', token: '', url: '' },
         }
     }
 
@@ -58,7 +58,8 @@ class VideoPlayer extends Component {
 
     initializePlayer() {
         let player = videojs('player', {
-            fluid: false,
+            ratio: "16:9",
+            fluid: true,
             autoplay: false,
             preload: 'auto',
             bigPlayButton: false,
@@ -105,12 +106,14 @@ class VideoPlayer extends Component {
     render() {
         const { showRedeemableMenu, stream } = this.state;
         const cssInline = {
-            height: '544px',
+            height: 'calc(100% - 60px)',
+            minHeight: '570px;',
             position: 'absolute',
             width: '100%',
             top: '0',
             left: '0',
-            paddingTop: '0'
+            paddingTop: '0',
+            backgroundColor: '#212c3d'
         }
 
 
@@ -127,7 +130,7 @@ class VideoPlayer extends Component {
                     {/* Redeemable menu */}
                     <div style={{ display: showRedeemableMenu }}
                         className={cssContainer.redeemableContainer}>
-                        {<RedeemableList username={stream.name} />}
+                        {<RedeemableList username={stream.token} />}
                     </div>
 
 

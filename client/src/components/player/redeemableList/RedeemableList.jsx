@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Stats from './stats/Stats.jsx';
 import Redeemable from './redeemable/Redeemable.jsx';
 import EmberList from './emberList/EmberList.jsx'
@@ -209,7 +209,7 @@ class RedeemableList extends Component {
 
     
     return (
-      <div>
+      <Fragment>
         <div className={css.redeemContainer}>
 
 
@@ -254,7 +254,7 @@ class RedeemableList extends Component {
               emberBalance={walletStatus.embers_balance} /> }
 
         </div>
-      </div>
+      </Fragment>
     )
   }
 }
