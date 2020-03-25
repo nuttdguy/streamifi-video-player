@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const SRC_DIR = path.join(__dirname, 'client', 'src');
 const DIST_DIR = path.join(__dirname, 'dist');
@@ -25,7 +26,7 @@ module.exports = {
                 }
             },
             {
-                test: /\.(css|scss)$/,
+                test: /\.css$/,
                 use: [
                     'style-loader',
                     {
@@ -39,7 +40,7 @@ module.exports = {
                         },
                     },
                 ],
-            },
+            }
         ],
     },
     resolve: {
@@ -48,3 +49,30 @@ module.exports = {
     },
     devtool: "source-map"
 }
+
+
+// {
+//     test: /\.css$/,
+//     use: [MiniCssExtractPlugin.loader, 'css-loader']
+// },
+
+// plugins: [
+//     new MiniCssExtractPlugin({
+//         filename: '[name]-bundle.css',
+//         chunkFilename: '[id].css',
+//         ignoreOrder: false, // Enable to remove warnings about conflicting order })
+//     })],
+
+// use: [
+//     'style-loader',
+//     {
+//         loader: 'css-loader',
+//         options: {
+//             sourceMap: true,
+//             localsConvention: 'camelCase',
+//             modules: {
+//                 localIdentName: '[name]__[local]--[hash:base64:5]',
+//             },
+//         },
+//     },
+// ],

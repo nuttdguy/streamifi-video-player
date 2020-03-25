@@ -107,7 +107,7 @@ class VideoPlayer extends Component {
         const { showRedeemableMenu, stream } = this.state;
         const cssInline = {
             height: 'calc(100% - 60px)',
-            minHeight: '570px;',
+            minHeight: '570px',
             position: 'absolute',
             width: '100%',
             top: '0',
