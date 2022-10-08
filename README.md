@@ -1,6 +1,8 @@
 # Project Name
 
-> Streamifi - where video
+> Streamifi - replication of a streaming app
+
+<img width="732" alt="streamifi-app" src="https://user-images.githubusercontent.com/6646024/194719927-bdedff49-82e3-4dba-8f87-e44959507e83.PNG">
 
 ## Related Projects
 
